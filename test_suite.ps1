@@ -1,4 +1,4 @@
-﻿$content = [System.IO.File]::ReadAllText("c:\website\index.html", [System.Text.Encoding]::UTF8)
+$content = [System.IO.File]::ReadAllText("c:\website\index.html", [System.Text.Encoding]::UTF8)
 
 function Test-Feature($name, $condition) {
     if ($condition) {
@@ -27,7 +27,7 @@ $res11 = Test-Feature "11. Email confirmation modal gui bien nhan xac nhan cho k
 $res12 = Test-Feature "12. Hop nhat 2 trong 1 - Guest View va Admin Portal View tren 1 file" ($content.Contains("guestView") -and $content.Contains("adminPortalView") -and $content.Contains("openAdminPortal") -and $content.Contains("closeAdminPortal"))
 $res13 = Test-Feature "13. Tone sang sang trong - Trang Alabaster, Kem Ivory, Vang Hoang Gia" ($content.Contains("#FAF8F5") -and $content.Contains("#B38A38") -and $content.Contains("#1C1917"))
 $res14 = Test-Feature "14. Thu vien hinh anh thuc te cao cap tu he thong nha hang" ($content.Contains("op-interior-2026.jpg") -and $content.Contains("new-landmark-pho.jpg") -and $content.Contains("buffet-line-2.jpg"))
-$res15 = Test-Feature "15. AI Chatbot Co Le Tan Ao tuong tac tu van dat ban thong minh" ($content.Contains("aiChatWindow") -and $content.Contains("toggleChat") -and $content.Contains("aiChatForm"))
+$res15 = Test-Feature "15. AI Chatbot Dify Concierge 5 Sao Chinh Thuc (rDGR8WgUBWdt1oFX)" ($content.Contains("difyChatbotConfig") -and $content.Contains("udify.app") -and $content.Contains("rDGR8WgUBWdt1oFX"))
 $res16 = Test-Feature "16. Firebase Cloud Data Sync - Firestore SDK va Cloud Panel" ($content.Contains("firebase-firestore-compat.js") -and $content.Contains("tabFirebase") -and $content.Contains("saveBookingRecord") -and $content.Contains("initFirebaseApp"))
 $res17 = Test-Feature "17. Deployment Files - Vercel config, GitHub README va .gitignore" ((Test-Path "c:\website\vercel.json") -and (Test-Path "c:\website\README.md") -and (Test-Path "c:\website\.gitignore"))
 
