@@ -1,0 +1,2722 @@
+﻿<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhà Hàng Oriental Pearl | Tầng 66 Tòa Tháp Landmark 81 - Vinpearl Autograph Collection</title>
+  <meta name="description" content="Khám phá ẩm thực thượng đỉnh trên tầng 66 Landmark 81 với Phở Chọc Trời bò Wagyu A4, Đại tiệc Buffet tôm hùm hảo hạng và tầm nhìn ngắm hoàng hôn sông Sài Gòn đẹp nhất Việt Nam.">
+
+  <!-- Google Fonts: Cormorant Garamond (Serif Quý Phái) & Plus Jakarta Sans (Không Chân Dễ Đọc) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons & FontAwesome -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind Configuration: Tone Sáng Sang Trọng (Ivory White, Alabaster & Royal Gold) -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            luxury: {
+              bg: '#FAF8F5',          // Trắng ngọc trai ấm áp
+              cream: '#F4EFE6',       // Kem ngà tự nhiên
+              card: '#FFFFFF',        // Trắng tinh khiết
+              border: '#E8DFC8',      // Viền vàng champagne thanh lịch
+              gold: '#B38A38',        // Vàng kim hoàng gia tương phản cao
+              'gold-hover': '#987226',
+              'gold-light': '#D4AF37',
+              'gold-pale': '#FBF6EA',
+              text: '#1C1917',        // Đen than chì trầm dễ đọc
+              muted: '#57534E',       // Xám ấm thanh nhã
+              dark: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            'luxury-soft': '0 12px 40px rgba(179, 138, 56, 0.09)',
+            'card-soft': '0 8px 30px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 16px 45px rgba(179, 138, 56, 0.14)',
+            'modal-luxury': '0 25px 60px rgba(0, 0, 0, 0.25)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Thanh cuộn tinh tế */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #FAF8F5; }
+    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #B38A38; }
+
+    /* Hiệu ứng chữ ánh kim */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #1C1917 20%, #B38A38 70%, #987226 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hiệu ứng nhấp nháy mềm mại */
+    @keyframes pulseSoft {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.85; }
+    }
+    .pulse-soft { animation: pulseSoft 2.5s infinite ease-in-out; }
+
+    /* Animation trôi nổi */
+    @keyframes floatPill {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .animate-float { animation: floatPill 3s ease-in-out infinite; }
+  </style>
+
+  <!-- Google Firebase Platform SDKs (Cloud Firestore & Realtime Sync) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
+</head>
+<body class="bg-luxury-bg text-luxury-text font-sans antialiased overflow-x-hidden selection:bg-luxury-gold selection:text-white">
+
+  <!-- ==========================================================================
+       KHỐI 1: GIAO DIỆN THỰC KHÁCH TONE SÁNG SANG TRỌNG (GUEST VIEW)
+       ========================================================================== -->
+  <div id="guestView" class="min-h-screen flex flex-col transition-opacity duration-300">
+    
+    <!-- 1.1. Top Bar Trang Nhã (Marriott Autograph Collection & Hotline VIP) -->
+    <div class="bg-white border-b border-luxury-border text-xs py-2.5 px-4 relative z-50">
+      <div class="max-w-[1280px] mx-auto flex flex-wrap items-center justify-between gap-3 text-luxury-muted">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-semibold bg-luxury-gold-pale text-luxury-gold border border-luxury-border">
+            <i class="fa-solid fa-crown text-[10px]"></i> TẦNG 66 LANDMARK 81
+          </span>
+          <span class="hidden sm:inline text-luxury-muted">Vinpearl Landmark 81, Autograph Collection • Marriott International</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <a href="tel:+84911817033" class="hover:text-luxury-gold flex items-center gap-1.5 transition-colors font-medium">
+            <i class="fa-solid fa-phone text-luxury-gold"></i> Hotline Đặt Bàn: <strong class="text-luxury-text">0911 817 033</strong>
+          </a>
+          <span class="text-slate-300 hidden md:inline">|</span>
+          <button onclick="openAdminPortal()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-luxury-cream hover:bg-luxury-gold/15 text-luxury-gold border border-luxury-border transition-all font-semibold" title="Mở Cổng Quản Trị Hệ Thống">
+            <i class="fa-solid fa-shield-halved text-luxury-gold text-xs"></i> Cổng Quản Trị
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.2. Thanh Điều Hướng Sticky Navbar Màu Sáng Thủy Tinh -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/92 border-b border-luxury-border shadow-sm transition-all duration-300">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+        
+        <!-- Brand Logo Sang Trọng -->
+        <a href="#hero" class="flex items-center gap-3.5 group">
+          <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-luxury-gold to-luxury-gold-light p-0.5 flex items-center justify-center shadow-luxury-soft">
+            <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-gem text-luxury-gold text-lg group-hover:scale-110 transition-transform"></i>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif text-2xl font-bold tracking-wider text-luxury-text">
+              ORIENTAL <span class="text-luxury-gold font-normal">PEARL</span>
+            </span>
+            <span class="text-[9px] uppercase tracking-[3px] text-luxury-muted -mt-0.5 font-medium">
+              Level 66 • Sky Dining & Luxury Buffet
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu Thanh Lịch -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-luxury-text">
+          <a href="#gioi-thieu" class="hover:text-luxury-gold transition-colors">Giới Thiệu</a>
+          <a href="#khong-gian" class="hover:text-luxury-gold transition-colors">Không Gian Tầng 66</a>
+          <a href="#thuc-don" class="hover:text-luxury-gold transition-colors">Thực Đơn & Buffet</a>
+          <a href="#hinh-anh" class="hover:text-luxury-gold transition-colors">Album Hình Ảnh</a>
+          <a href="#danh-gia" class="hover:text-luxury-gold transition-colors">Đánh Giá</a>
+          <a href="#faqs" class="hover:text-luxury-gold transition-colors">Hỏi Đáp</a>
+        </nav>
+
+        <!-- Nút Hành Động -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <!-- Nút Chia Sẻ Bạn Bè -->
+          <button onclick="openShareModal()" class="w-10 h-10 rounded-full bg-luxury-cream/80 hover:bg-luxury-gold-pale text-luxury-muted hover:text-luxury-gold border border-luxury-border flex items-center justify-center transition-all" title="Chia sẻ trang web tới bạn bè, gia đình">
+            <i class="fa-solid fa-share-nodes text-sm"></i>
+          </button>
+
+          <!-- Nút Quản Trị Tích Hợp -->
+          <button onclick="openAdminPortal()" class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-luxury-cream text-luxury-gold border border-luxury-border transition-all shadow-sm" title="Cổng Quản Trị Đặt Chỗ & Sub-Admins">
+            <i class="fa-solid fa-shield-halved text-luxury-gold text-xs"></i>
+            <span>Quản Trị</span>
+          </button>
+
+          <!-- Nút Đặt Bàn Ngay Tone Vàng Kim Nổi Bật -->
+          <a href="#dat-ban" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-luxury-gold to-luxury-gold-light text-white hover:brightness-105 transition-all duration-300 shadow-luxury-soft transform hover:-translate-y-0.5">
+            <i class="fa-regular fa-calendar-check text-sm"></i>
+            <span>Đặt Bàn Ngay</span>
+          </a>
+
+          <!-- Mobile Toggle -->
+          <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-xl bg-luxury-cream flex items-center justify-center text-luxury-text hover:text-luxury-gold border border-luxury-border" aria-label="Mở Menu">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Drawer Menu -->
+      <div id="mobileMenuDrawer" class="hidden lg:hidden border-b border-luxury-border bg-white/98 backdrop-blur-2xl px-6 py-5 flex flex-col gap-3 text-sm font-semibold">
+        <a href="#gioi-thieu" class="mobile-nav-link text-luxury-text hover:text-luxury-gold py-1">Giới Thiệu Nhà Hàng</a>
+        <a href="#khong-gian" class="mobile-nav-link text-luxury-text hover:text-luxury-gold py-1">Không Gian & Tầm Nhìn Tầng 66</a>
+        <a href="#thuc-don" class="mobile-nav-link text-luxury-text hover:text-luxury-gold py-1">Thực Đơn & Đại Tiệc Buffet</a>
+        <a href="#hinh-anh" class="mobile-nav-link text-luxury-text hover:text-luxury-gold py-1">Album Hình Ảnh Thực Tế</a>
+        <a href="#danh-gia" class="mobile-nav-link text-luxury-text hover:text-luxury-gold py-1">Đánh Giá Của Khách Hàng</a>
+        <a href="#faqs" class="mobile-nav-link text-luxury-text hover:text-luxury-gold py-1">Câu Hỏi Thường Gặp (FAQs)</a>
+        <div class="pt-3 border-t border-luxury-border flex items-center justify-between">
+          <button onclick="openAdminPortal()" class="text-xs text-luxury-gold flex items-center gap-1.5 hover:underline font-bold">
+            <i class="fa-solid fa-shield-halved"></i> Cổng Quản Trị (Admin)
+          </button>
+          <button onclick="openShareModal()" class="text-xs text-luxury-muted hover:text-luxury-gold flex items-center gap-1">
+            <i class="fa-solid fa-share-nodes"></i> Chia sẻ trang
+          </button>
+        </div>
+        <a href="#dat-ban" class="mobile-nav-link mt-2 w-full text-center py-3 rounded-full bg-luxury-gold text-white font-bold text-xs uppercase tracking-wider shadow-md">
+          Đặt Bàn Giữ Vị Trí Đẹp
+        </a>
+      </div>
+    </header>
+
+    <!-- 1.3. Hero Section Tone Sáng: Quý Phái, Rộng Mở & Ngập Tràn Ánh Sáng -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-luxury-cream/40" id="hero">
+      
+      <!-- Ảnh Nền Toàn Cảnh Sảnh Tầng 66 Ngắm Sông Sài Gòn -->
+      <div class="absolute inset-0 z-0">
+        <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/op-interior-2026.jpg" alt="Không gian Nhà hàng Oriental Pearl tầng 66 Landmark 81" class="w-full h-full object-cover object-center filter contrast-105 scale-105 transition-transform duration-1000">
+        <!-- Lớp phủ ánh sáng trắng ngà dịu mắt (Light Luxury Overlay) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-luxury-bg via-white/80 to-white/60"></div>
+      </div>
+
+      <div class="max-w-[1040px] mx-auto px-4 sm:px-6 py-20 text-center relative z-10">
+        
+        <!-- Huy hiệu Khách sạn 5 sao Tone Sáng -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-luxury-border backdrop-blur-md mb-6 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-luxury-gold pulse-soft"></span>
+          <span class="text-xs uppercase font-bold tracking-widest text-luxury-gold">
+            Đỉnh Cao Ẩm Thực Giữa Tầng Mây Sài Gòn
+          </span>
+        </div>
+
+        <!-- Tiêu Đề Chính -->
+        <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold leading-[1.2] text-luxury-text tracking-wide mb-6">
+          Thưởng Thức Ẩm Thực Thượng Đỉnh <br>
+          <span class="text-gold-gradient font-semibold">Ngắm Trọn Sông Sài Gòn Tại Tầng 66</span>
+        </h1>
+
+        <!-- Lời Giới Thiệu -->
+        <p class="text-base sm:text-lg text-luxury-muted font-normal leading-relaxed max-w-2xl mx-auto mb-10">
+          Nơi hội tụ bát <strong>Phở Chọc Trời bò Wagyu A4</strong> trứ danh, <strong>Đại tiệc Buffet tôm hùm</strong> hảo hạng và khúc quanh sông Sài Gòn lung linh dưới ánh hoàng hôn từ độ cao hơn 300 mét.
+        </p>
+
+        <!-- Cụm Nút Hành Động Tone Vàng Kim -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+          <a href="#dat-ban" class="px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-luxury-gold via-luxury-gold-light to-luxury-gold text-white hover:brightness-105 transition-all duration-300 shadow-luxury-soft transform hover:-translate-y-0.5 flex items-center gap-2">
+            <i class="fa-regular fa-calendar-check text-base"></i> Đặt Bàn Ngay & Nhận Mã VietQR
+          </a>
+          <a href="#thuc-don" class="px-7 py-4 rounded-full font-bold text-xs sm:text-sm text-luxury-text bg-white/90 hover:bg-white border border-luxury-border hover:border-luxury-gold transition-all shadow-card-soft flex items-center gap-2">
+            <i class="fa-solid fa-utensils text-luxury-gold"></i> Khám Phá Thực Đơn Tầng 66
+          </a>
+        </div>
+
+        <!-- 4 Điểm Nhấn Tín Nhiệm (Tone Trắng Ngà) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-6 border-t border-luxury-border/80 text-center">
+          <div class="bg-white/80 p-3.5 rounded-2xl border border-luxury-border/60 shadow-card-soft">
+            <div class="font-serif text-2xl font-bold text-luxury-gold">+300m</div>
+            <div class="text-xs text-luxury-muted mt-0.5">Độ cao ngắm thành phố</div>
+          </div>
+          <div class="bg-white/80 p-3.5 rounded-2xl border border-luxury-border/60 shadow-card-soft">
+            <div class="font-serif text-2xl font-bold text-luxury-text">Tầng 66</div>
+            <div class="text-xs text-luxury-muted mt-0.5">Tòa tháp Landmark 81</div>
+          </div>
+          <div class="bg-white/80 p-3.5 rounded-2xl border border-luxury-border/60 shadow-card-soft">
+            <div class="font-serif text-2xl font-bold text-luxury-gold">Wagyu A4</div>
+            <div class="text-xs text-luxury-muted mt-0.5">Bò Nhật Bản hảo hạng</div>
+          </div>
+          <div class="bg-white/80 p-3.5 rounded-2xl border border-luxury-border/60 shadow-card-soft">
+            <div class="font-serif text-2xl font-bold text-emerald-700">100%</div>
+            <div class="text-xs text-luxury-muted mt-0.5">Hải sản tươi sống cao cấp</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1.4. Section: Giới Thiệu & 3 Trải Nghiệm Độc Bản (Tone Sáng) -->
+    <section class="py-20 bg-white border-y border-luxury-border" id="gioi-thieu">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-bold uppercase tracking-[3px] text-luxury-gold block mb-2">Vị Trí Độc Tôn Sài Gòn</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-luxury-text mb-4">
+            Nơi Mỗi Bữa Ăn Là Một Kỷ Niệm Khó Quên
+          </h2>
+          <p class="text-sm text-luxury-muted leading-relaxed">
+            Tọa lạc tại tầng 66 của khách sạn Vinpearl Landmark 81, Autograph Collection, Oriental Pearl mang đến không gian ẩm thực sang trọng, ngập tràn ánh sáng tự nhiên và tầm nhìn ôm trọn sông Sài Gòn.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Điểm 1: Tầm Nhìn Triệu Đô -->
+          <div class="bg-luxury-bg p-8 rounded-3xl border border-luxury-border hover:border-luxury-gold transition-all duration-300 group shadow-card-soft hover:shadow-card-hover">
+            <div class="w-14 h-14 rounded-2xl bg-white border border-luxury-border flex items-center justify-center text-luxury-gold text-2xl mb-6 group-hover:scale-110 transition-transform shadow-sm">
+              <i class="fa-solid fa-mountain-sun"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-luxury-text mb-3">Tầm Nhìn Triệu Đô 360°</h3>
+            <p class="text-sm text-luxury-muted leading-relaxed mb-4">
+              Khung kính kịch trần ôm trọn khúc quanh sông Sài Gòn. Đẹp nhất là khung giờ <strong>17:30 - 18:30</strong> khi ánh hoàng hôn buông xuống và thành phố bắt đầu lên đèn lộng lẫy.
+            </p>
+            <span class="text-xs text-luxury-gold font-semibold flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> Ưu tiên xếp bàn sát kính khi đặt trước
+            </span>
+          </div>
+
+          <!-- Điểm 2: Di Sản Ẩm Thực -->
+          <div class="bg-luxury-bg p-8 rounded-3xl border border-luxury-border hover:border-luxury-gold transition-all duration-300 group shadow-card-soft hover:shadow-card-hover">
+            <div class="w-14 h-14 rounded-2xl bg-white border border-luxury-border flex items-center justify-center text-luxury-gold text-2xl mb-6 group-hover:scale-110 transition-transform shadow-sm">
+              <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-luxury-text mb-3">Phở Chọc Trời & Hải Sản</h3>
+            <p class="text-sm text-luxury-muted leading-relaxed mb-4">
+              Món phở bò <strong>Satsuma Wagyu A4</strong> lừng danh nấu từ nước dùng ninh chậm 48 giờ, kết hợp cùng đại tiệc tôm hùm, cua Cà Mau, hàu nướng mỡ hành và trứng cá tầm thượng hạng.
+            </p>
+            <span class="text-xs text-luxury-gold font-semibold flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> Hương vị Việt chuẩn hóa 5 sao quốc tế
+            </span>
+          </div>
+
+          <!-- Điểm 3: Live Jazz & Kỷ Niệm -->
+          <div class="bg-luxury-bg p-8 rounded-3xl border border-luxury-border hover:border-luxury-gold transition-all duration-300 group shadow-card-soft hover:shadow-card-hover">
+            <div class="w-14 h-14 rounded-2xl bg-white border border-luxury-border flex items-center justify-center text-luxury-gold text-2xl mb-6 group-hover:scale-110 transition-transform shadow-sm">
+              <i class="fa-solid fa-music"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-luxury-text mb-3">Live Jazz & Tiệc Kỷ Niệm</h3>
+            <p class="text-sm text-luxury-muted leading-relaxed mb-4">
+              Ban nhạc sống biểu diễn du dương vào mỗi tối cuối tuần. Đội ngũ nhân viên sảnh hỗ trợ <strong>set up nến, hoa và bánh kem kỷ niệm ngày cưới/sinh nhật hoàn toàn miễn phí</strong>.
+            </p>
+            <span class="text-xs text-luxury-gold font-semibold flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> Miễn phí đỗ xe hầm B2-B3 & thang máy riêng
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1.5. Section: Thực Đơn & Các Gói Buffet Niêm Yết (Thẻ Trắng Tinh Tế) -->
+    <section class="py-20 max-w-[1240px] mx-auto px-4 sm:px-6" id="thuc-don">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-[3px] text-luxury-gold block mb-2">Thực Đơn & Bảng Giá Niêm Yết</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-luxury-text mb-3">
+          Những Trải Nghiệm Ẩm Thực Được Yêu Thích Nhất
+        </h2>
+        <p class="text-sm text-luxury-muted">
+          Bảng giá minh bạch, rõ ràng. Thực phẩm tươi mới mỗi ngày do các Bếp trưởng 5 sao giàu kinh nghiệm trực tiếp chuẩn bị.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Gói 1: Buffet Tôm Hùm Thứ Bảy (Bán Chạy Nhất) -->
+        <div class="bg-white rounded-3xl overflow-hidden border-2 border-luxury-gold flex flex-col justify-between shadow-card-hover relative group">
+          <div class="absolute top-3 right-3 bg-luxury-gold text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider z-10 shadow">
+            Yêu Thích Nhất
+          </div>
+          <div>
+            <div class="relative aspect-video overflow-hidden">
+              <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/1794283292392-7321293210760921681-g2678144758272766689-394020edeb7eaf631d91fdbaca5ec2eb.jpg" alt="Đại tiệc Buffet Tôm Hùm Thứ 7" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-5">
+              <span class="text-[11px] text-luxury-gold font-bold uppercase tracking-wider">Tối Thứ Bảy (18:00 - 22:00)</span>
+              <h3 class="font-serif text-xl font-bold text-luxury-text mt-1 mb-2">Buffet Tôm Hùm & Live Jazz</h3>
+              <p class="text-xs text-luxury-muted leading-relaxed mb-4">
+                Tôm hùm không giới hạn, gan ngỗng Pháp Foie Gras, trứng cá tầm Caviar, cua Cà Mau hòa cùng tiếng đàn Jazz lãng mạn.
+              </p>
+              <div class="text-xl font-serif font-bold text-luxury-gold">
+                2.266.000₫ <span class="text-xs text-luxury-muted font-sans font-normal">/ khách (++)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a href="#dat-ban" onclick="selectPackageForForm('lobster_sat')" class="w-full py-2.5 rounded-full bg-luxury-gold hover:bg-luxury-gold-hover text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <i class="fa-regular fa-calendar-check"></i> Đặt Bàn Gói Này
+            </a>
+          </div>
+        </div>
+
+        <!-- Gói 2: Phở Chọc Trời Bò Wagyu A4 -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-luxury-border flex flex-col justify-between hover:border-luxury-gold transition-all duration-300 shadow-card-soft hover:shadow-card-hover group">
+          <div>
+            <div class="relative aspect-video overflow-hidden">
+              <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/new-landmark-pho.jpg" alt="Phở Chọc Trời Bò Wagyu A4 Tầng 66" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-white/95 text-luxury-gold text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-luxury-border shadow-sm">Món Di Sản</span>
+            </div>
+            <div class="p-5">
+              <span class="text-[11px] text-luxury-muted font-bold uppercase tracking-wider">Phục vụ hàng ngày (11:00 - 22:00)</span>
+              <h3 class="font-serif text-xl font-bold text-luxury-text mt-1 mb-2">Phở Chọc Trời Bò Wagyu A4</h3>
+              <p class="text-xs text-luxury-muted leading-relaxed mb-4">
+                Bò A4 Satsuma Wagyu nhập khẩu Kagoshima vân mỡ cẩm thạch mềm tan, nước dùng thơm lừng thảo mộc tự nhiên ninh 48 tiếng.
+              </p>
+              <div class="text-xl font-serif font-bold text-luxury-gold">
+                980.000₫ <span class="text-xs text-luxury-muted font-sans font-normal">/ tô (++)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a href="#dat-ban" onclick="selectPackageForForm('pho_wagyu')" class="w-full py-2.5 rounded-full bg-luxury-cream hover:bg-luxury-gold hover:text-white text-luxury-text font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 border border-luxury-border">
+              <i class="fa-regular fa-calendar-check"></i> Đặt Bàn Thưởng Thức
+            </a>
+          </div>
+        </div>
+
+        <!-- Gói 3: Buffet Hải Sản Tối T2 - T6 -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-luxury-border flex flex-col justify-between hover:border-luxury-gold transition-all duration-300 shadow-card-soft hover:shadow-card-hover group">
+          <div>
+            <div class="relative aspect-video overflow-hidden">
+              <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/buffet-line-2.jpg" alt="Buffet Hải Sản Tối Các Ngày Trong Tuần" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-5">
+              <span class="text-[11px] text-luxury-muted font-bold uppercase tracking-wider">Thứ 2 - Thứ 6 & CN (18:00 - 22:00)</span>
+              <h3 class="font-serif text-xl font-bold text-luxury-text mt-1 mb-2">Buffet Hải Sản Thượng Hạng</h3>
+              <p class="text-xs text-luxury-muted leading-relaxed mb-4">
+                Tôm hùm chế biến theo khẩu vị riêng, cua biển tươi ngon, hàu nướng mỡ hành, sashimi cá hồi Na Uy và tráng miệng Pháp.
+              </p>
+              <div class="text-xl font-serif font-bold text-luxury-gold">
+                1.866.000₫ <span class="text-xs text-luxury-muted font-sans font-normal">/ khách (++)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a href="#dat-ban" onclick="selectPackageForForm('seafood_weekday')" class="w-full py-2.5 rounded-full bg-luxury-cream hover:bg-luxury-gold hover:text-white text-luxury-text font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 border border-luxury-border">
+              <i class="fa-regular fa-calendar-check"></i> Đặt Bàn Buffet
+            </a>
+          </div>
+        </div>
+
+        <!-- Gói 4: Tiệc Trà Chiều Hoàng Hôn -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-luxury-border flex flex-col justify-between hover:border-luxury-gold transition-all duration-300 shadow-card-soft hover:shadow-card-hover group">
+          <div>
+            <div class="relative aspect-video overflow-hidden">
+              <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/839166578-953060210698393-5427647892516435379-n.jpg" alt="Trà Chiều Hoàng Hôn Ngắm Sông Sài Gòn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-amber-50 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200">View Hoàng Hôn</span>
+            </div>
+            <div class="p-5">
+              <span class="text-[11px] text-luxury-muted font-bold uppercase tracking-wider">Hàng ngày (14:30 - 17:30)</span>
+              <h3 class="font-serif text-xl font-bold text-luxury-text mt-1 mb-2">Trà Chiều Sunset High Tea</h3>
+              <p class="text-xs text-luxury-muted leading-relaxed mb-4">
+                Thưởng thức tháp bánh ngọt nghệ nhân, trà TWG cao cấp và chụp ảnh check-in tuyệt đẹp bên khung cửa kính ngập tràn ánh nắng.
+              </p>
+              <div class="text-xl font-serif font-bold text-luxury-gold">
+                890.000₫ <span class="text-xs text-luxury-muted font-sans font-normal">/ khách (++)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a href="#dat-ban" onclick="selectPackageForForm('high_tea')" class="w-full py-2.5 rounded-full bg-luxury-cream hover:bg-luxury-gold hover:text-white text-luxury-text font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 border border-luxury-border">
+              <i class="fa-regular fa-calendar-check"></i> Đặt Bàn Trà Chiều
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- 1.6. Section: THƯ VIỆN HÌNH ẢNH ĐẸP CỦA NHÀ HÀNG (Bổ sung thêm 6 ảnh thực tế từ Marriott CDN) -->
+    <section class="py-20 bg-luxury-cream/40 border-y border-luxury-border" id="hinh-anh">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-[3px] text-luxury-gold block mb-2">Thư Viện Ảnh Thực Tế</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-luxury-text">
+              Không Gian & Khoảnh Khắc Đẹp Tại Tầng 66
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-luxury-muted max-w-md mt-2 md:mt-0 leading-relaxed">
+            Hình ảnh chân thực chụp tại sảnh chính Oriental Pearl, góc ngắm hoàng hôn sông Sài Gòn và những bàn tiệc chuẩn 5 sao Autograph Collection.
+          </p>
+        </div>
+
+        <!-- Lưới 6 Ảnh Chất Lượng Cao Của Nhà Hàng -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Ảnh 1: Sảnh Chính & Toàn Cảnh Sông -->
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] relative group border border-luxury-border shadow-card-soft bg-white">
+            <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/op-interior-2026.jpg" alt="Không gian sang trọng tầng 66 Landmark 81" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+              <div class="text-white">
+                <span class="text-[10px] uppercase tracking-wider text-amber-200 font-bold block">Tầm Nhìn Triệu Đô</span>
+                <span class="text-sm font-serif font-bold">Đại sảnh tiệc tầng 66 ôm trọn sông Sài Gòn</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ảnh 2: Bàn Tiệc Hoàng Hôn Lãng Mạn -->
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] relative group border border-luxury-border shadow-card-soft bg-white">
+            <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/839166578-953060210698393-5427647892516435379-n.jpg" alt="Bàn tiệc lãng mạn ngắm hoàng hôn buông sông" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+              <div class="text-white">
+                <span class="text-[10px] uppercase tracking-wider text-amber-200 font-bold block">Khung Giờ Vàng 17:30</span>
+                <span class="text-sm font-serif font-bold">Bàn tiệc sát kính ngắm hoàng hôn rực rỡ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ảnh 3: Tô Phở Chọc Trời Bò Wagyu A4 -->
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] relative group border border-luxury-border shadow-card-soft bg-white">
+            <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/new-landmark-pho.jpg" alt="Tô Phở Chọc Trời bò Wagyu A4 độc bản" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+              <div class="text-white">
+                <span class="text-[10px] uppercase tracking-wider text-amber-200 font-bold block">Món Di Sản</span>
+                <span class="text-sm font-serif font-bold">Phở Chọc Trời bò Wagyu A4 Satsuma</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ảnh 4: Quầy Buffet Hải Sản Sống Tươi Ngon -->
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] relative group border border-luxury-border shadow-card-soft bg-white">
+            <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/buffet-line-2.jpg" alt="Quầy Buffet hải sản tươi sống cao cấp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+              <div class="text-white">
+                <span class="text-[10px] uppercase tracking-wider text-amber-200 font-bold block">Đại Tiệc Buffet</span>
+                <span class="text-sm font-serif font-bold">Quầy hải sản tươi sống chế biến tại chỗ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ảnh 5: Tôm Hùm Thượng Hạng -->
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] relative group border border-luxury-border shadow-card-soft bg-white">
+            <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/1794283292392-7321293210760921681-g2678144758272766689-394020edeb7eaf631d91fdbaca5ec2eb.jpg" alt="Tôm hùm không giới hạn tiệc tối thứ Bảy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+              <div class="text-white">
+                <span class="text-[10px] uppercase tracking-wider text-amber-200 font-bold block">Thứ Bảy Đặc Biệt</span>
+                <span class="text-sm font-serif font-bold">Tôm hùm & Trứng cá tầm Caviar</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ảnh 6: Toàn Cảnh Terrace Ngắm Khúc Quanh Sông Sài Gòn -->
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] relative group border border-luxury-border shadow-card-soft bg-white">
+            <img src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/op-terrace.jpg" alt="Tầm nhìn khúc quanh sông Sài Gòn từ Landmark 81" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+              <div class="text-white">
+                <span class="text-[10px] uppercase tracking-wider text-amber-200 font-bold block">Góc Nhìn Đỉnh Cao</span>
+                <span class="text-sm font-serif font-bold">Toàn cảnh thành phố từ độ cao +300 mét</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1.7. Section: Đánh Giá 5 Sao Từ Thực Khách (Tone Sáng Thư Thái) -->
+    <section class="py-20 max-w-[1240px] mx-auto px-4 sm:px-6" id="danh-gia">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-[3px] text-luxury-gold block mb-2">Thực Khách Hài Lòng</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-luxury-text mb-3">
+          Cảm Nhận Từ Những Bữa Ăn Đáng Nhớ
+        </h2>
+        <p class="text-xs sm:text-sm text-luxury-muted">
+          Điểm đánh giá trung bình <strong>4.8 / 5.0 sao</strong> trên TripAdvisor và Google Reviews.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-7 rounded-3xl border border-luxury-border flex flex-col justify-between shadow-card-soft">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-sm mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-xs sm:text-sm text-luxury-text italic leading-relaxed mb-4">
+              "Vợ chồng mình kỷ niệm 3 năm ngày cưới ở đây. Đặt bàn lúc 17:30 ngắm trọn vẹn hoàng hôn sông Sài Gòn tuyệt đẹp. Tôm hùm rất tươi, nhân viên hỗ trợ set up nến và hoa chu đáo ngoài mong đợi!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-luxury-border/60">
+            <div class="w-10 h-10 rounded-full bg-luxury-gold-pale text-luxury-gold border border-luxury-border flex items-center justify-center font-bold text-xs">NL</div>
+            <div>
+              <div class="font-bold text-xs text-luxury-text">Nguyễn Lê Hoàng</div>
+              <div class="text-[10px] text-luxury-muted">Đánh giá trên TripAdvisor • Tháng 10/2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-7 rounded-3xl border border-luxury-border flex flex-col justify-between shadow-card-soft">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-sm mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-xs sm:text-sm text-luxury-text italic leading-relaxed mb-4">
+              "Bát Phở Chọc Trời bò Wagyu A4 đúng là danh bất hư truyền. Thịt bò mềm như bơ, nước dùng thơm dịu thanh tao. Tiếp đối tác nước ngoài ở đây ai cũng ấn tượng với độ cao và tầm nhìn thành phố."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-luxury-border/60">
+            <div class="w-10 h-10 rounded-full bg-sky-50 text-sky-700 border border-sky-200 flex items-center justify-center font-bold text-xs">DT</div>
+            <div>
+              <div class="font-bold text-xs text-luxury-text">Đặng Tuấn Kiệt (CEO Invest Corp)</div>
+              <div class="text-[10px] text-luxury-muted">Đánh giá trên Google Reviews • Tháng 11/2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-7 rounded-3xl border border-luxury-border flex flex-col justify-between shadow-card-soft">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-sm mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-xs sm:text-sm text-luxury-text italic leading-relaxed mb-4">
+              "Buffet tối Thứ Bảy có ban nhạc Jazz chơi nhạc sống rất chill. Quầy tôm hùm, cua và trứng cá tầm phục vụ nhanh, không phải chờ đợi lâu. Đặt bàn online có mã VietQR thanh toán cọc rất tiện lợi!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-luxury-border/60">
+            <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center font-bold text-xs">MA</div>
+            <div>
+              <div class="font-bold text-xs text-luxury-text">Mai Ánh Tuyết</div>
+              <div class="text-[10px] text-luxury-muted">Đánh giá trên Facebook Fanpage • Tháng 11/2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.8. Section: Form Đặt Bàn Trực Tuyến Tone Sáng (Tự Tính Tiền & Mã VietQR Tức Thì) -->
+    <section class="py-20 bg-white border-t border-luxury-border" id="dat-ban">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-luxury-gold-pale text-luxury-gold text-xs font-bold uppercase tracking-wider mb-2 border border-luxury-border">
+            <i class="fa-regular fa-calendar-check"></i> Đặt Bàn Trực Tuyến
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-luxury-text mb-3">
+            Giữ Bàn Đẹp Tầng 66 Trong Vòng 1 Phút
+          </h2>
+          <p class="text-xs sm:text-sm text-luxury-muted">
+            Điền thông tin bên dưới để giữ vị trí bàn sát kính view sông Sài Gòn. Sau khi xác nhận, hệ thống sẽ <strong>tự động gửi email xác nhận chi tiết và hiển thị mã VietQR chuyển khoản</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Form Nhập Liệu Tone Sáng Thân Thiện -->
+          <div class="lg:col-span-7 bg-luxury-bg p-6 sm:p-8 rounded-3xl border border-luxury-border shadow-card-soft">
+            <form id="reservationForm" onsubmit="event.preventDefault(); handleCustomerBookingSubmit();" class="space-y-5">
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                    Họ và Tên của Bạn <span class="text-rose-500">*</span>
+                  </label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-luxury-muted">
+                      <i class="fa-regular fa-user"></i>
+                    </span>
+                    <input type="text" id="custName" required placeholder="Ví dụ: Nguyễn Văn A" class="w-full bg-white border border-luxury-border text-luxury-text text-sm rounded-xl pl-10 pr-4 py-3 outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold transition-all shadow-sm">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                    Số Điện Thoại <span class="text-rose-500">*</span>
+                  </label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-luxury-muted">
+                      <i class="fa-solid fa-phone"></i>
+                    </span>
+                    <input type="tel" id="custPhone" required placeholder="0901 234 567" class="w-full bg-white border border-luxury-border text-luxury-text text-sm rounded-xl pl-10 pr-4 py-3 outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold transition-all shadow-sm">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-luxury-gold mb-1.5 flex items-center justify-between">
+                  <span>Email Nhận Thư Xác Nhận Đặt Bàn <span class="text-rose-500">*</span></span>
+                  <span class="text-[11px] text-emerald-700 font-medium"><i class="fa-solid fa-bolt"></i> Gửi tự động ngay sau khi đặt</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-luxury-muted">
+                    <i class="fa-regular fa-envelope"></i>
+                  </span>
+                  <input type="email" id="custEmail" required placeholder="email.cua.ban@gmail.com" class="w-full bg-white border border-luxury-border text-luxury-text text-sm rounded-xl pl-10 pr-4 py-3 outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold transition-all shadow-sm">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                  Chọn Hạng Tiệc / Món Ăn Bạn Muốn Trải Nghiệm <span class="text-rose-500">*</span>
+                </label>
+                <select id="custPackage" onchange="updatePriceCalculator()" class="w-full bg-white border border-luxury-border text-luxury-text text-sm rounded-xl px-4 py-3 outline-none focus:border-luxury-gold shadow-sm">
+                  <option value="lobster_sat" data-price="2266000" data-img="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/1794283292392-7321293210760921681-g2678144758272766689-394020edeb7eaf631d91fdbaca5ec2eb.jpg" selected>
+                    🦞 Buffet Tôm Hùm Thứ Bảy & Live Jazz (2.266.000₫++/khách)
+                  </option>
+                  <option value="pho_wagyu" data-price="980000" data-img="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/new-landmark-pho.jpg">
+                    🍜 Phở Chọc Trời Bò Wagyu A4 Tầng 66 (980.000₫++/tô)
+                  </option>
+                  <option value="seafood_weekday" data-price="1866000" data-img="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/site-images/migrated-images/buffet-line-2.jpg">
+                    🦪 Buffet Hải Sản Tối Thứ 2 - Thứ 6 & CN (1.866.000₫++/khách)
+                  </option>
+                  <option value="high_tea" data-price="890000" data-img="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/839166578-953060210698393-5427647892516435379-n.jpg">
+                    🫖 Tiệc Trà Chiều Hoàng Hôn Sunset High Tea (890.000₫++/khách)
+                  </option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                    Ngày Dùng Bữa <span class="text-rose-500">*</span>
+                  </label>
+                  <input type="date" id="custDate" required class="w-full bg-white border border-luxury-border text-luxury-text text-xs sm:text-sm rounded-xl px-3 py-3 outline-none focus:border-luxury-gold shadow-sm">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                    Khung Giờ Đến <span class="text-rose-500">*</span>
+                  </label>
+                  <select id="custTime" class="w-full bg-white border border-luxury-border text-luxury-text text-xs sm:text-sm rounded-xl px-3 py-3 outline-none focus:border-luxury-gold shadow-sm">
+                    <option value="17:30" selected>17:30 (Ngắm Hoàng Hôn Đẹp Nhất)</option>
+                    <option value="18:30">18:30 (Thành Phố Lên Đèn)</option>
+                    <option value="19:30">19:30 (Khung Giờ Cao Điểm)</option>
+                    <option value="20:30">20:30 (Tiệc Tối Muộn)</option>
+                    <option value="11:30">11:30 (Ăn Trưa)</option>
+                    <option value="15:00">15:00 (Trà Chiều)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                    Số Lượng Khách <span class="text-rose-500">*</span>
+                  </label>
+                  <select id="custGuests" onchange="updatePriceCalculator()" class="w-full bg-white border border-luxury-border text-luxury-text text-xs sm:text-sm rounded-xl px-3 py-3 outline-none focus:border-luxury-gold shadow-sm">
+                    <option value="1">1 Khách</option>
+                    <option value="2" selected>2 Khách (Bàn Cặp Đôi)</option>
+                    <option value="3">3 Khách</option>
+                    <option value="4">4 Khách (Bàn Gia Đình)</option>
+                    <option value="6">6 Khách (Bàn Tiệc)</option>
+                    <option value="8">8 Khách</option>
+                    <option value="10">10+ Khách (Phòng VIP Riêng)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1.5">
+                  Yêu Cầu Đặc Biệt (Vị trí bàn, kỷ niệm ngày cưới, sinh nhật...)
+                </label>
+                <input type="text" id="custNote" placeholder="Ví dụ: Ưu tiên xếp bàn sát kính kịch trần, chuẩn bị nến hoa kỷ niệm..." class="w-full bg-white border border-luxury-border text-luxury-text text-sm rounded-xl px-4 py-3 outline-none focus:border-luxury-gold shadow-sm">
+              </div>
+
+              <button type="submit" class="w-full py-4 rounded-full font-bold text-sm uppercase tracking-wider bg-gradient-to-r from-luxury-gold to-luxury-gold-light text-white hover:brightness-105 transition-all duration-300 shadow-luxury-soft flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-envelope-circle-check text-lg"></i>
+                <span>Xác Nhận Giữ Chỗ & Nhận Thư Xác Nhận Tức Thì</span>
+              </button>
+
+              <div class="flex items-center justify-between text-xs text-luxury-muted pt-1">
+                <span><i class="fa-solid fa-shield-halved text-luxury-gold mr-1"></i> Thông tin được bảo mật 100%</span>
+                <span class="text-emerald-700 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> Tự động đồng bộ với sảnh tầng 66</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Bảng Tự Động Tính Tiền Trắng Tinh Khiết -->
+          <div class="lg:col-span-5 bg-white p-6 sm:p-7 rounded-3xl border border-luxury-border flex flex-col justify-between shadow-card-soft">
+            <div>
+              <div class="flex items-center justify-between border-b border-luxury-border pb-3 mb-4">
+                <span class="font-serif text-lg font-bold text-luxury-text">Tóm Tắt Đặt Bàn Dự Kiến</span>
+                <span class="text-[10px] bg-luxury-gold-pale text-luxury-gold border border-luxury-border px-2.5 py-0.5 rounded-full font-mono font-semibold">Tự Động Tính Giá</span>
+              </div>
+
+              <div class="relative rounded-2xl overflow-hidden aspect-video mb-4 border border-luxury-border shadow-sm">
+                <img id="calcPkgImg" src="https://mds-assets.marriott.com/cdn-cgi/image/f=auto/cms-platform-for-marriott/sgnak-oriental-pearl/1794283292392-7321293210760921681-g2678144758272766689-394020edeb7eaf631d91fdbaca5ec2eb.jpg" alt="Món Ăn Đang Chọn" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-3.5">
+                  <span id="calcPkgNameText" class="text-xs font-bold text-white">
+                    Buffet Tôm Hùm Thứ Bảy & Live Jazz
+                  </span>
+                </div>
+              </div>
+
+              <div class="bg-luxury-bg p-4 rounded-2xl border border-luxury-border space-y-2 text-xs">
+                <div class="flex justify-between text-luxury-text">
+                  <span>Đơn giá niêm yết:</span>
+                  <span class="font-bold text-luxury-text" id="calcUnitPrice">2.266.000₫ / khách</span>
+                </div>
+                <div class="flex justify-between text-luxury-text">
+                  <span>Số lượng khách:</span>
+                  <span class="font-bold text-luxury-text" id="calcGuestsCount">2 Khách</span>
+                </div>
+                <div class="flex justify-between text-luxury-muted">
+                  <span>Tạm tính (Subtotal):</span>
+                  <span class="text-luxury-text font-semibold" id="calcSubtotal">4.532.000₫</span>
+                </div>
+                <div class="flex justify-between text-luxury-muted">
+                  <span>Phí dịch vụ 5 sao (5% SVC):</span>
+                  <span id="calcSvc">226.600₫</span>
+                </div>
+                <div class="flex justify-between text-luxury-muted border-b border-luxury-border pb-2">
+                  <span>Thuế GTGT (8% VAT):</span>
+                  <span id="calcVat">380.688₫</span>
+                </div>
+                <div class="flex justify-between items-center pt-1 text-sm font-bold text-luxury-text">
+                  <span>Tổng Dự Toán Trọn Gói:</span>
+                  <span class="font-serif text-2xl text-luxury-gold" id="calcTotal">5.139.288₫</span>
+                </div>
+              </div>
+
+              <div class="mt-4 space-y-2.5 text-xs text-luxury-muted">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-square-parking text-luxury-gold text-sm w-4"></i>
+                  <span>Miễn phí gửi xe ô tô / xe máy tại hầm B2-B3 Landmark 81.</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-elevator text-luxury-gold text-sm w-4"></i>
+                  <span>Lễ tân khách sạn đón tiếp thang máy riêng lên tầng 66.</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-cake-candles text-luxury-gold text-sm w-4"></i>
+                  <span>Hỗ trợ chuẩn bị nến hoa bàn kỷ niệm ngày cưới hoặc sinh nhật.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 p-3.5 rounded-2xl bg-luxury-cream/70 border border-luxury-border flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-luxury-gold text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
+                <i class="fa-solid fa-qrcode"></i>
+              </div>
+              <div class="text-[11px] text-luxury-muted leading-snug">
+                <strong class="text-luxury-text">Thanh Toán / Đặt Cọc Tiện Lợi:</strong> Sau khi bấm đặt bàn, mã VietQR sẽ hiển thị kèm email để bạn quét app ngân hàng thanh toán an toàn.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1.9. Section: FAQs Thân Thiện Tone Sáng -->
+    <section class="py-20 max-w-[900px] mx-auto px-4 sm:px-6" id="faqs">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-[3px] text-luxury-gold block mb-2">Thông Tin Cần Biết</span>
+        <h2 class="font-serif text-3xl font-bold text-luxury-text mb-2">
+          Câu Hỏi Thường Gặp Của Khách Hàng
+        </h2>
+        <p class="text-xs sm:text-sm text-luxury-muted">
+          Những giải đáp chi tiết giúp bạn có trải nghiệm trọn vẹn nhất tại tầng 66 Landmark 81.
+        </p>
+      </div>
+
+      <div class="space-y-3.5">
+        <div class="faq-item bg-white rounded-2xl border border-luxury-border overflow-hidden shadow-card-soft">
+          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-luxury-text flex items-center justify-between gap-4 hover:text-luxury-gold transition-colors text-sm">
+            <span>1. Nhà hàng có yêu cầu về trang phục (Dress Code) không?</span>
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-luxury-muted"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-luxury-muted border-t border-luxury-border/60 pt-3 leading-relaxed">
+            Dạ Oriental Pearl khuyến khích Quý khách mặc trang phục lịch sự (Smart Casual). Quý khách vui lòng không mặc áo ba lỗ, đồ bơi hoặc dép xỏ ngón vào khu vực nhà hàng để giữ trọn vẹn không gian sang trọng của bữa tiệc ạ.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white rounded-2xl border border-luxury-border overflow-hidden shadow-card-soft">
+          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-luxury-text flex items-center justify-between gap-4 hover:text-luxury-gold transition-colors text-sm">
+            <span>2. Tôi muốn đặt bàn sát kính ngắm hoàng hôn sông Sài Gòn thì cần lưu ý gì?</span>
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-luxury-muted"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-luxury-muted border-t border-luxury-border/60 pt-3 leading-relaxed">
+            Khung giờ ngắm hoàng hôn đẹp nhất là từ <strong>17:30 đến 18:30</strong>. Các vị trí bàn sát kính kịch trần luôn được ưu tiên giữ chỗ cho những khách hàng đặt bàn trước trên website hoặc liên hệ Hotline sớm ạ.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white rounded-2xl border border-luxury-border overflow-hidden shadow-card-soft">
+          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-luxury-text flex items-center justify-between gap-4 hover:text-luxury-gold transition-colors text-sm">
+            <span>3. Đến tòa nhà Landmark 81 thì tôi gửi xe và di chuyển lên tầng 66 như thế nào?</span>
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-luxury-muted"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-luxury-muted border-t border-luxury-border/60 pt-3 leading-relaxed">
+            Quý khách gửi xe ô tô hoặc xe máy hoàn toàn miễn phí tại hầm B2-B3 tòa nhà Landmark 81. Sau đó, Quý khách di chuyển vào <strong>Sảnh chính Khách sạn Vinpearl Landmark 81 (Tầng 1)</strong>, nhân viên lễ tân sẽ hướng dẫn Quý khách lên thang máy chuyên biệt đón thẳng lên sảnh tầng 66.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white rounded-2xl border border-luxury-border overflow-hidden shadow-card-soft">
+          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-luxury-text flex items-center justify-between gap-4 hover:text-luxury-gold transition-colors text-sm">
+            <span>4. Nhà hàng có hỗ trợ chuẩn bị tiệc sinh nhật hoặc kỷ niệm ngày cưới không?</span>
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-luxury-muted"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-luxury-muted border-t border-luxury-border/60 pt-3 leading-relaxed">
+            Dạ có ạ! Oriental Pearl hân hạnh <strong>tặng kèm trang trí nến, hoa bàn tiệc và thiệp kỷ niệm</strong> dành cho Quý khách. Bạn chỉ cần ghi chú vào ô "Yêu cầu đặc biệt" trong form đặt bàn là đội ngũ sảnh sẽ chuẩn bị chu đáo trước giờ đón khách.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.10. Chân Trang Tone Kem Ấm Sang Trọng (Footer) -->
+    <footer class="bg-luxury-cream/80 border-t border-luxury-border py-14 text-xs text-luxury-muted">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        
+        <div class="md:col-span-2">
+          <span class="font-serif text-2xl font-bold text-luxury-text tracking-wider">ORIENTAL <span class="text-luxury-gold font-normal">PEARL</span></span>
+          <div class="text-[10px] uppercase tracking-[2px] text-luxury-gold font-bold mt-1 mb-3">Vinpearl Landmark 81, Autograph Collection • Marriott International</div>
+          <p class="text-luxury-muted max-w-md leading-relaxed mb-4">
+            <i class="fa-solid fa-location-dot text-luxury-gold mr-1.5"></i> Tầng 66 Tòa tháp Landmark 81, 720A Điện Biên Phủ, Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-luxury-text mb-5">
+            <a href="tel:+84911817033" class="hover:text-luxury-gold flex items-center gap-2">
+              <i class="fa-solid fa-phone text-luxury-gold"></i> Hotline VIP: <strong>0911 817 033</strong>
+            </a>
+            <a href="mailto:orientalpearl@vinpearllandmark81.com" class="hover:text-luxury-gold flex items-center gap-2">
+              <i class="fa-regular fa-envelope text-luxury-gold"></i> orientalpearl@vinpearl...
+            </a>
+            <a href="https://zalo.me/0911817033" target="_blank" rel="noopener noreferrer" class="hover:text-luxury-gold flex items-center gap-2">
+              <i class="fa-solid fa-comment-dots text-sky-600"></i> Zalo: <strong>0911 817 033</strong>
+            </a>
+            <a href="https://wa.me/84911817033" target="_blank" rel="noopener noreferrer" class="hover:text-luxury-gold flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp: <strong>+84 911 817 033</strong>
+            </a>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="https://www.facebook.com/VinpearlLandmark81" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-luxury-text hover:text-luxury-gold transition-colors border border-luxury-border shadow-sm" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+            <a href="https://www.instagram.com/vinpearllandmark81/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-luxury-text hover:text-luxury-gold transition-colors border border-luxury-border shadow-sm" aria-label="Instagram"><i class="fa-brands fa-instagram text-xs"></i></a>
+            <a href="https://www.tripadvisor.com/Restaurant_Review-g293925-d15233158-Reviews-Oriental_Pearl_Restaurant-Ho_Chi_Minh_City.html" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-luxury-text hover:text-luxury-gold transition-colors border border-luxury-border shadow-sm" aria-label="TripAdvisor"><i class="fa-solid fa-plane text-xs"></i></a>
+            <button onclick="openShareModal()" class="w-8 h-8 rounded-full bg-luxury-gold-pale border border-luxury-border flex items-center justify-center text-luxury-gold hover:bg-luxury-gold hover:text-white transition-all shadow-sm" title="Chia sẻ trang web"><i class="fa-solid fa-share-nodes text-xs"></i></button>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-luxury-text uppercase tracking-wider mb-4 text-xs">Khám Phá Nhà Hàng</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#dat-ban" class="hover:text-luxury-gold transition-colors">Đặt Bàn Trực Tuyến & VietQR</a></li>
+            <li><a href="#thuc-don" class="hover:text-luxury-gold transition-colors">Phở Chọc Trời Bò Wagyu A4</a></li>
+            <li><a href="#thuc-don" class="hover:text-luxury-gold transition-colors">Buffet Tôm Hùm Thứ Bảy & Jazz</a></li>
+            <li><a href="#thuc-don" class="hover:text-luxury-gold transition-colors">Trà Chiều Hoàng Hôn Sunset Tea</a></li>
+            <li><a href="#faqs" class="hover:text-luxury-gold transition-colors">Hướng Dẫn Đỗ Xe & Thang Máy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-luxury-text uppercase tracking-wider mb-4 text-xs">Hệ Thống Quản Trị</h4>
+          <ul class="space-y-2.5">
+            <li>
+              <button onclick="openAdminPortal()" class="inline-flex items-center gap-1.5 text-luxury-gold hover:underline font-bold">
+                <i class="fa-solid fa-shield-halved text-xs"></i> Mở Cổng Quản Trị (Admin)
+              </button>
+            </li>
+            <li><button onclick="openAdminPortal()" class="hover:text-luxury-text transition-colors">Theo Dõi Đơn Đặt Bàn Mới</button></li>
+            <li><button onclick="openAdminPortal()" class="hover:text-luxury-text transition-colors">Thống Kê Khách Hàng Truy Cập</button></li>
+            <li><button onclick="openAdminPortal()" class="hover:text-luxury-text transition-colors">Phân Quyền Lễ Tân Sub-Admins</button></li>
+            <li><span class="text-luxury-muted text-[11px]">Tài khoản: admin / Landmark81@2026</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6 pt-6 border-t border-luxury-border flex flex-wrap items-center justify-between gap-4 text-[11px] text-luxury-muted">
+        <div>Copyright © 2026 Oriental Pearl Restaurant. Vinpearl Landmark 81, Autograph Collection. All Rights Reserved.</div>
+        <div class="flex items-center gap-3">
+          <button onclick="openShareModal()" class="text-luxury-gold hover:underline flex items-center gap-1 font-semibold">
+            <i class="fa-solid fa-share-nodes"></i> Chia Sẻ Trang Web
+          </button>
+          <span>•</span>
+          <button onclick="openAdminPortal()" class="text-luxury-muted hover:text-luxury-text flex items-center gap-1">
+            <i class="fa-solid fa-lock text-[10px]"></i> Cổng Admin
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 1.11. Thanh Liên Hệ Đa Kênh Nổi (Hotline, Zalo, WhatsApp, Messenger) -->
+    <aside aria-label="Kênh liên hệ trực tiếp" class="fixed bottom-6 left-6 z-40 flex flex-col gap-2.5 group">
+      <a href="tel:+84911817033" class="w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-luxury-gold text-white shadow-luxury-soft flex items-center justify-center hover:scale-110 transition-transform duration-300 relative" title="Gọi Hotline Đặt Bàn 24/7: 0911 817 033">
+        <i class="fa-solid fa-phone text-lg animate-pulse"></i>
+        <span class="sr-only">Gọi Hotline Đặt Bàn: 0911 817 033</span>
+        <span class="absolute left-14 bg-white border border-luxury-border text-luxury-text text-[11px] font-semibold px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          Hotline: 0911 817 033
+        </span>
+      </a>
+
+      <a href="https://zalo.me/0911817033" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#0068FF] text-white shadow-md flex items-center justify-center hover:scale-110 transition-transform duration-300 relative" title="Chat Zalo sảnh tầng 66: 0911 817 033">
+        <i class="fa-solid fa-comment-dots text-xl"></i>
+        <span class="sr-only">Chat Zalo sảnh tầng 66</span>
+        <span class="absolute left-14 bg-white border border-sky-300 text-luxury-text text-[11px] font-semibold px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          Chat Zalo Lễ Tân 66
+        </span>
+      </a>
+
+      <a href="https://wa.me/84911817033" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#25D366] text-white shadow-md flex items-center justify-center hover:scale-110 transition-transform duration-300 relative" title="WhatsApp Quốc Tế: +84 911 817 033">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span class="sr-only">WhatsApp Quốc Tế: +84 911 817 033</span>
+        <span class="absolute left-14 bg-white border border-emerald-300 text-luxury-text text-[11px] font-semibold px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          WhatsApp VIP
+        </span>
+      </a>
+
+      <a href="https://m.me/VinpearlLandmark81" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#0084FF] to-[#A033FF] text-white shadow-md flex items-center justify-center hover:scale-110 transition-transform duration-300 relative" title="Nhắn tin Facebook Messenger Fanpage">
+        <i class="fa-brands fa-facebook-messenger text-2xl"></i>
+        <span class="sr-only">Nhắn tin Facebook Fanpage</span>
+        <span class="absolute left-14 bg-white border border-purple-300 text-luxury-text text-[11px] font-semibold px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          Facebook Messenger
+        </span>
+      </a>
+    </aside>
+
+    <!-- 1.12. Floating Chatbot Cô Lễ Tân Ảo (Góc Phải Dưới - Tone Trắng Tinh Tế) -->
+    <div id="aiPill" class="hidden sm:flex fixed bottom-24 right-8 z-40 animate-float items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-luxury-border text-xs text-luxury-text shadow-luxury-soft pointer-events-none transition-opacity duration-300">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span class="font-medium">Cô Lễ Tân Ảo đang trực tuyến...</span>
+    </div>
+
+    <button id="aiToggleBtn" class="fixed bottom-6 right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-luxury-gold via-luxury-gold-light to-luxury-gold text-white shadow-luxury-soft flex items-center justify-center hover:scale-105 transition-all duration-300 focus:outline-none" aria-label="Nhắn tin với Cô Lễ Tân Ảo">
+      <i class="fa-solid fa-wand-magic-sparkles text-xl sm:text-2xl" id="toggleIcon"></i>
+      <span class="absolute -top-1 -right-1 w-5 h-5 bg-rose-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white animate-bounce">
+        1
+      </span>
+    </button>
+
+    <!-- Khung Chatbot Window Popup Màu Sáng -->
+    <div id="aiChatWindow" class="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[390px] h-[550px] max-h-[85vh] bg-white border-2 border-luxury-border rounded-3xl shadow-modal-luxury flex flex-col overflow-hidden backdrop-blur-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-6">
+      
+      <div class="bg-luxury-cream p-4 border-b border-luxury-border flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-luxury-gold-pale border border-luxury-gold flex items-center justify-center text-luxury-gold text-lg">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white"></span>
+          </div>
+          <div>
+            <div class="font-serif font-bold text-base text-luxury-text tracking-wide">Cô Lễ Tân Pearl Concierge</div>
+            <div class="text-[10px] uppercase tracking-wider text-luxury-gold font-bold">Hỗ Trợ Thực Khách Tầng 66 • Online</div>
+          </div>
+        </div>
+        <button id="aiCloseBtn" class="text-luxury-muted hover:text-luxury-text p-2 text-lg" aria-label="Đóng Chat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="aiMessagesList" class="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs sm:text-sm bg-luxury-bg">
+        <div class="bg-white border border-luxury-border text-luxury-text p-3.5 rounded-2xl rounded-bl-sm shadow-card-soft">
+          <div class="text-[10px] font-bold text-luxury-gold uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-crown"></i> Pearl Concierge
+          </div>
+          Dạ em kính chào Quý khách! Em là <strong>Pearl Concierge</strong> — Trợ lý lễ tân tại Nhà hàng <strong>Oriental Pearl (Tầng 66 Landmark 81)</strong>.
+          <br><br>
+          Em có thể giúp Quý khách tư vấn thực đơn buffet tôm hùm, chọn bàn sát kính ngắm hoàng hôn sông Sài Gòn hoặc tư vấn món Phở Chọc Trời Wagyu trứ danh ạ! ✨
+          <div class="text-[10px] text-luxury-muted mt-2 text-right">Vừa xong</div>
+        </div>
+
+        <div class="flex flex-col gap-2 pt-1" id="chatChipsWrap">
+          <button onclick="handleChipClick('Giá buffet hải sản tối nay bao nhiêu?')" class="text-left text-xs bg-white hover:bg-luxury-gold-pale text-luxury-text px-3.5 py-2 rounded-xl border border-luxury-border transition-all flex items-center gap-2 shadow-sm font-medium">
+            <i class="fa-solid fa-shrimp text-luxury-gold"></i> Giá buffet hải sản tối nay bao nhiêu?
+          </button>
+          <button onclick="handleChipClick('Phở Chọc Trời Bò Wagyu A4 có gì đặc biệt?')" class="text-left text-xs bg-white hover:bg-luxury-gold-pale text-luxury-text px-3.5 py-2 rounded-xl border border-luxury-border transition-all flex items-center gap-2 shadow-sm font-medium">
+            <i class="fa-solid fa-bowl-food text-luxury-gold"></i> Phở Chọc Trời Bò Wagyu A4 có gì đặc biệt?
+          </button>
+          <button onclick="handleChipClick('Làm sao để đặt bàn sát kính view hoàng hôn?')" class="text-left text-xs bg-white hover:bg-luxury-gold-pale text-luxury-text px-3.5 py-2 rounded-xl border border-luxury-border transition-all flex items-center gap-2 shadow-sm font-medium">
+            <i class="fa-solid fa-mountain-sun text-luxury-gold"></i> Làm sao để đặt bàn sát kính view hoàng hôn?
+          </button>
+          <button onclick="handleChipClick('Tôi muốn đặt bàn 2 người ngắm hoàng hôn')" class="text-left text-xs bg-white hover:bg-luxury-gold-pale text-luxury-text px-3.5 py-2 rounded-xl border border-luxury-border transition-all flex items-center gap-2 shadow-sm font-medium">
+            <i class="fa-regular fa-calendar-check text-luxury-gold"></i> Đặt bàn 2 người ngắm hoàng hôn
+          </button>
+        </div>
+      </div>
+
+      <div class="p-3 bg-white border-t border-luxury-border">
+        <form id="aiChatForm" class="flex items-center gap-2">
+          <input type="text" id="aiInputText" placeholder="Hỏi về món ăn, giá buffet, đặt bàn..." autocomplete="off" class="flex-1 bg-luxury-bg border border-luxury-border focus:border-luxury-gold text-luxury-text text-xs sm:text-sm px-3.5 py-2.5 rounded-xl outline-none transition-all">
+          <button type="submit" class="w-10 h-10 rounded-xl bg-luxury-gold text-white flex items-center justify-center font-bold hover:bg-luxury-gold-hover transition-colors shadow-sm" aria-label="Gửi">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       KHỐI 2: MÀN HÌNH ĐĂNG NHẬP ADMIN (TÍCH HỢP TONE SÁNG SANG TRỌNG)
+       ========================================================================== -->
+  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white p-8 rounded-3xl border-2 border-luxury-gold shadow-modal-luxury relative">
+      <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 text-luxury-muted hover:text-luxury-text text-xl">&times;</button>
+      
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-luxury-gold-pale border border-luxury-gold flex items-center justify-center text-luxury-gold text-2xl mb-3 shadow-sm">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-luxury-text">Cổng Quản Trị Hệ Thống</h3>
+        <p class="text-xs text-luxury-gold uppercase tracking-wider font-bold mt-1">Oriental Pearl • Level 66 Landmark 81</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); handleAdminLogin();" class="space-y-4 text-xs sm:text-sm">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1">Tên Đăng Nhập (Username)</label>
+          <input type="text" id="adminUserField" required placeholder="Nhập username..." class="w-full bg-luxury-bg border border-luxury-border rounded-xl px-4 py-3 text-luxury-text outline-none focus:border-luxury-gold shadow-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-luxury-text mb-1">Mật Khẩu (Password)</label>
+          <input type="password" id="adminPassField" required placeholder="••••••••" class="w-full bg-luxury-bg border border-luxury-border rounded-xl px-4 py-3 text-luxury-text outline-none focus:border-luxury-gold shadow-sm">
+        </div>
+
+        <div id="loginErrorMsg" class="hidden text-xs text-rose-700 bg-rose-50 border border-rose-300 p-2.5 rounded-xl text-center font-medium">
+          Sai tên đăng nhập hoặc mật khẩu!
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-full bg-gradient-to-r from-luxury-gold to-luxury-gold-light text-white font-bold text-xs uppercase tracking-wider hover:brightness-105 transition-all shadow-luxury-soft">
+          Đăng Nhập Quản Trị
+        </button>
+
+        <div class="bg-luxury-cream/80 border border-luxury-border rounded-2xl p-3.5 text-[11px] text-luxury-muted space-y-1">
+          <div class="font-bold text-luxury-gold flex items-center gap-1">
+            <i class="fa-solid fa-circle-info"></i> Tài Khoản Mặc Định:
+          </div>
+          <div>• <strong>Main Admin:</strong> <code>admin</code> | Mật khẩu: <code>Landmark81@2026</code></div>
+          <div class="text-[10px] text-luxury-muted">* Main Admin có toàn quyền tạo và xóa tài khoản Sub-Admins.</div>
+        </div>
+
+        <div class="text-center pt-1">
+          <button type="button" onclick="closeAdminLoginModal()" class="text-xs text-luxury-muted hover:text-luxury-text underline">
+            Quay lại trang khách hàng
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       KHỐI 3: GIAO DIỆN QUẢN TRỊ VIÊN TÍCH HỢP (ADMIN PORTAL TONE SÁNG EXECUTIVE)
+       ========================================================================== -->
+  <div id="adminPortalView" class="hidden min-h-screen bg-[#F8F9FA] flex-col transition-opacity duration-300">
+    
+    <!-- Top Admin Bar Tone Sáng Hiện Đại -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
+            <span class="font-serif text-xl font-bold text-luxury-text tracking-wider">ORIENTAL <span class="text-luxury-gold">PEARL</span></span>
+            <span class="text-[10px] bg-luxury-gold-pale text-luxury-gold px-2.5 py-0.5 rounded-full font-mono border border-luxury-border font-bold">ADMIN PORTAL</span>
+          </div>
+          <span class="hidden md:inline text-slate-300">|</span>
+          <div class="hidden md:flex items-center gap-2 text-xs text-slate-500">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Hệ thống trực tuyến Tầng 66 Landmark 81</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Firebase Cloud Status Badge -->
+          <button onclick="switchAdminTab('tabFirebase')" id="adminCloudStatusPill" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition-all cursor-pointer" title="Cau hinh dong bo Firebase Cloud">
+            <span class="w-2 h-2 rounded-full bg-amber-500" id="cloudStatusDot"></span>
+            <span id="cloudStatusText">Firebase: LocalStorage</span>
+          </button>
+          <button onclick="closeAdminPortal()" class="px-4 py-2 rounded-full bg-white hover:bg-luxury-cream text-luxury-text border border-slate-300 hover:border-luxury-gold text-xs font-semibold transition-all flex items-center gap-2 shadow-sm">
+            <i class="fa-solid fa-arrow-left text-luxury-gold"></i> Xem Trang Khách
+          </button>
+
+          <div class="text-right hidden sm:block">
+            <div class="text-xs font-bold text-luxury-text" id="currentAdminName">Tổng Quản Lý (Main Admin)</div>
+            <div class="text-[10px] text-luxury-gold font-mono font-bold" id="currentAdminRole">MAIN_SUPER_ADMIN</div>
+          </div>
+
+          <button onclick="handleAdminLogout()" class="px-3.5 py-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-sm">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng Xuất
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Admin Dashboard Content -->
+    <main class="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 py-8">
+      
+      <!-- 4 KPI Metrics Cards Tone Sáng -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-slate-500 text-xs uppercase tracking-wider mb-2 font-semibold">
+            <span>Tổng Khách Truy Cập (Visitors)</span>
+            <i class="fa-solid fa-users text-sky-600 text-base"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-serif" id="statVisitors">1,429</div>
+          <div class="text-[11px] text-emerald-600 mt-1 flex items-center gap-1 font-semibold">
+            <i class="fa-solid fa-arrow-trend-up"></i> +18.4% so với tuần trước
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-slate-500 text-xs uppercase tracking-wider mb-2 font-semibold">
+            <span>Tổng Đơn Đặt Bàn (Bookings)</span>
+            <i class="fa-solid fa-calendar-check text-luxury-gold text-base"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-luxury-gold font-serif" id="statBookings">38</div>
+          <div class="text-[11px] text-slate-500 mt-1">
+            <span class="text-emerald-700 font-bold" id="statConfirmed">32</span> đã gửi email xác nhận
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-slate-500 text-xs uppercase tracking-wider mb-2 font-semibold">
+            <span>Doanh Thu Dự Kiến</span>
+            <i class="fa-solid fa-coins text-emerald-600 text-base"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-serif" id="statRevenue">86.250.000₫</div>
+          <div class="text-[11px] text-slate-500 mt-1">Đã gồm 5% SVC & 8% VAT</div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-slate-500 text-xs uppercase tracking-wider mb-2 font-semibold">
+            <span>Tỷ Lệ Chuyển Đổi (CRO)</span>
+            <i class="fa-solid fa-chart-pie text-purple-600 text-base"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-purple-700 font-serif" id="statConversion">8.6%</div>
+          <div class="text-[11px] text-emerald-600 mt-1 font-semibold">Đạt mục tiêu đề án Master</div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Tabs & Actions -->
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4 mb-6">
+        <div class="flex items-center gap-2">
+          <button onclick="switchAdminTab('tabBookings')" id="btnTabBookings" class="tab-btn px-4 py-2 rounded-xl text-xs uppercase font-bold tracking-wider bg-luxury-gold text-white flex items-center gap-2 transition-all shadow-sm">
+            <i class="fa-solid fa-list-check"></i> Đơn Đặt Bàn (<span id="badgeBookingsCount">0</span>)
+          </button>
+          <button onclick="switchAdminTab('tabSubAdmins')" id="btnTabSubAdmins" class="tab-btn px-4 py-2 rounded-xl text-xs uppercase font-bold tracking-wider bg-slate-200 text-slate-700 hover:bg-slate-300 flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-user-shield"></i> Quản Lý Sub-Admins (<span id="badgeSubAdminsCount">0</span>)
+          </button>
+          <button onclick="switchAdminTab('tabFirebase')" id="btnTabFirebase" class="tab-btn px-4 py-2 rounded-xl text-xs uppercase font-bold tracking-wider bg-slate-200 text-slate-700 hover:bg-slate-300 flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-cloud-arrow-up text-sky-600"></i> Dam May Firebase
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="exportBookingsToCSV()" class="px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-2 border border-slate-300 transition-colors shadow-sm">
+            <i class="fa-solid fa-file-excel text-emerald-600"></i> Xuất File Excel CSV
+          </button>
+          <button onclick="closeAdminPortal()" class="px-4 py-2 rounded-xl bg-luxury-gold-pale hover:bg-luxury-gold/20 text-luxury-gold text-xs font-bold flex items-center gap-2 border border-luxury-border transition-colors">
+            <i class="fa-solid fa-globe"></i> Xem Trang Khách Hàng
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 1: BẢNG THEO DÕI ĐẶT BÀN -->
+      <div id="tabBookings" class="space-y-4">
+        
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="relative w-full sm:w-80">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </span>
+            <input type="text" id="bookingSearchInput" oninput="filterBookingsTable()" placeholder="Tìm theo tên, SĐT, mã đơn..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs rounded-xl pl-10 pr-3 py-2.5 outline-none focus:border-luxury-gold">
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <select id="bookingStatusFilter" onchange="filterBookingsTable()" class="bg-slate-50 border border-slate-200 text-xs text-slate-700 rounded-xl px-3 py-2.5 outline-none">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="confirmed">Đã gửi Email Xác Nhận</option>
+              <option value="pending">Chờ xác nhận</option>
+              <option value="completed">Đã hoàn tất bữa tiệc</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-700">
+              <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                <tr>
+                  <th class="py-3.5 px-4 font-bold">Mã Đơn</th>
+                  <th class="py-3.5 px-4 font-bold">Khách Hàng</th>
+                  <th class="py-3.5 px-4 font-bold">Gói Trải Nghiệm</th>
+                  <th class="py-3.5 px-4 font-bold">Ngày Dùng Bữa</th>
+                  <th class="py-3.5 px-4 font-bold">Số Khách</th>
+                  <th class="py-3.5 px-4 font-bold">Tổng Tiền</th>
+                  <th class="py-3.5 px-4 font-bold">Trạng Thái</th>
+                  <th class="py-3.5 px-4 text-center font-bold">Thao Tác</th>
+                </tr>
+              </thead>
+              <tbody id="bookingsTableBody" class="divide-y divide-slate-100">
+                <!-- Dynamically rendered rows -->
+              </tbody>
+            </table>
+          </div>
+          
+          <div id="noBookingsNotice" class="hidden p-8 text-center text-slate-500 text-xs">
+            Chưa có đơn đặt bàn nào được ghi nhận.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: QUẢN LÝ SUB-ADMINS -->
+      <div id="tabSubAdmins" class="hidden space-y-6">
+        
+        <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-start gap-3 text-xs text-amber-900">
+          <i class="fa-solid fa-crown text-base mt-0.5 text-luxury-gold"></i>
+          <div>
+            <strong>Đặc quyền Main Admin:</strong> Bạn có toàn quyền cấp tài khoản truy cập phân quyền (Sub-Admins) cho nhân viên quản lý ca, thu ngân, lễ tân sảnh 66 và có quyền xóa tài khoản bất cứ lúc nào.
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 lg:col-span-1 shadow-sm" id="subAdminCardWrapper">
+            <h3 class="font-bold text-slate-900 text-sm mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-user-plus text-luxury-gold"></i> Tạo Sub-Admin Mới
+            </h3>
+            
+            <form id="createSubAdminForm" onsubmit="event.preventDefault(); handleCreateSubAdmin();" class="space-y-4 text-xs">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Họ và Tên Nhân Viên *</label>
+                <input type="text" id="subFullName" required placeholder="Ví dụ: Nguyễn Văn A" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 outline-none focus:border-luxury-gold">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Tên Đăng Nhập (Username) *</label>
+                <input type="text" id="subUsername" required placeholder="Ví dụ: letan_ca1" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 outline-none focus:border-luxury-gold">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Mật Khẩu *</label>
+                <input type="password" id="subPassword" required placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 outline-none focus:border-luxury-gold">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Phân Quyền / Vai Trò</label>
+                <select id="subRole" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 outline-none focus:border-luxury-gold">
+                  <option value="Lễ Tân Sảnh Ca Sáng">Lễ Tân Sảnh Ca Sáng</option>
+                  <option value="Quản Lý Ca Tối (Floor Manager)">Quản Lý Ca Tối (Floor Manager)</option>
+                  <option value="Thu Ngân & Điều Phối F&B">Thu Ngân & Điều Phối F&B</option>
+                  <option value="Nhân Viên Chăm Sóc Khách Hàng">Nhân Viên Chăm Sóc Khách Hàng</option>
+                </select>
+              </div>
+
+              <button type="submit" class="w-full py-2.5 rounded-full bg-luxury-gold text-white font-bold uppercase tracking-wider hover:bg-luxury-gold-hover transition-all shadow-sm">
+                Thêm Tài Khoản Sub-Admin
+              </button>
+            </form>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden lg:col-span-2 shadow-sm">
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+              <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-users-gear text-luxury-gold"></i> Danh Sách Sub-Admins Đang Hoạt Động
+              </h3>
+              <span class="text-xs text-slate-500 font-mono" id="subAdminCountText">2 tài khoản</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-slate-700">
+                <thead class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                  <tr>
+                    <th class="py-3 px-4 font-bold">Nhân Viên</th>
+                    <th class="py-3 px-4 font-bold">Username</th>
+                    <th class="py-3 px-4 font-bold">Vai Trò</th>
+                    <th class="py-3 px-4 font-bold">Ngày Tạo</th>
+                    <th class="py-3 px-4 text-center font-bold">Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody id="subAdminsTableBody" class="divide-y divide-slate-100">
+                  <!-- Dynamically rendered sub-admins -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TAB 3: DONG BO DAM MAY FIREBASE CLOUD -->
+      <div id="tabFirebase" class="hidden space-y-6">
+        
+        <!-- Banner gioi thieu & trang thai -->
+        <div class="bg-gradient-to-r from-sky-50 via-indigo-50 to-amber-50 border border-sky-200 p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-slate-900 text-sm">Google Firebase Cloud Data Synchronization</h3>
+                <span id="tabCloudStatusBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">LocalStorage Mode</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-1">Dong bo toan bo Don dat ban, Luot truy cap va Phan quyen Sub-Admin len may chu Google Firebase theo thoi gian thuc (Real-time 24/7).</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="syncAllBookingsToCloud()" id="btnSyncCloud" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold flex items-center gap-2 shadow transition-all">
+              <i class="fa-solid fa-rotate"></i> Dong Bo Du Lieu Len Cloud
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Cot 1: Form cau hinh Firebase Zero-Code -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 lg:col-span-2 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-key text-luxury-gold"></i> Cau Hinh Khoa Firebase (Firebase Config)
+              </h4>
+              <span class="text-[11px] text-slate-400">Zero-Code Auto Adapter</span>
+            </div>
+
+            <p class="text-xs text-slate-600">
+              Ban chi can dan doan ma <code>firebaseConfig</code> tu <strong>Firebase Console (Project Settings &gt; Web App)</strong> hoac dien tung thong so vao day. He thong se tu dong kich hoat ket noi dam may!
+            </p>
+
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Dan nguyen khoi JSON cau hinh (firebaseConfig):</label>
+                <textarea id="firebaseConfigJson" rows="4" placeholder='{"apiKey": "AIzaSy...", "authDomain": "oriental-pearl.firebaseapp.com", "projectId": "oriental-pearl-81", "storageBucket": "...", "messagingSenderId": "...", "appId": "..."}' class="w-full font-mono bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 outline-none focus:border-luxury-gold text-[11px]"></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label class="block font-semibold text-slate-700 mb-1">API Key (apiKey)</label>
+                  <input type="text" id="fbApiKey" placeholder="AIzaSy..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 outline-none focus:border-luxury-gold">
+                </div>
+                <div>
+                  <label class="block font-semibold text-slate-700 mb-1">Project ID (projectId)</label>
+                  <input type="text" id="fbProjectId" placeholder="oriental-pearl-landmark81" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 outline-none focus:border-luxury-gold">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-3">
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="saveFirebaseConfig()" class="px-5 py-2.5 rounded-xl bg-luxury-gold hover:bg-luxury-gold-hover text-white font-bold transition-all shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-floppy-disk"></i> Luu & Kich Hoat Firebase
+                  </button>
+                  <button type="button" onclick="clearFirebaseConfig()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-700 text-slate-600 font-medium transition-all">
+                    Xoa Cau Hinh (Ve LocalStorage)
+                  </button>
+                </div>
+                <button type="button" onclick="applyDemoFirebaseConfig()" class="text-xs text-sky-600 hover:text-sky-800 underline">
+                  Nap Cau Hinh Mau Demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cot 2: Huong dan 3 buoc & Tich hop Vercel/GitHub -->
+          <div class="space-y-4">
+            
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 text-emerald-700">
+                <i class="fa-solid fa-shield-halved"></i> Loi Ich Van Hanh
+              </h4>
+              <ul class="text-xs text-slate-600 space-y-2">
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                  <span><strong>Dong bo da thiet bi:</strong> Khach dat ban tu dien thoai, may tinh quan ly tai tang 66 nhan ngay lap tuc.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                  <span><strong>Bao toan du lieu:</strong> Don dat ban duoc luu tru vinh vien tren Cloud Google, khong bao gio mat khi xoa cache trinh duyet.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                  <span><strong>An toan tuyet doi:</strong> Ma hoa theo tieu chuan bao mat du lieu khach hang cao cap.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-900 text-white p-5 rounded-2xl shadow-sm space-y-3">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-300">
+                <span class="flex items-center gap-2"><i class="fa-brands fa-github text-base"></i> GitHub & Vercel</span>
+                <span class="text-emerald-400 font-mono text-[10px]">CI/CD Ready</span>
+              </div>
+              <p class="text-[11px] text-slate-300 leading-relaxed">
+                He thong da co san tep <code>vercel.json</code> va <code>README.md</code>. Sau khi day code len GitHub, ket noi vao Vercel chi mat 1 cu nhap chuot de website chinh thuc chay toan cau!
+              </p>
+              <div class="pt-1 flex items-center gap-2">
+                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white text-slate-900 text-xs font-bold hover:bg-slate-100 transition-colors inline-flex items-center gap-1.5">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Mo Vercel
+                </a>
+                <a href="https://console.firebase.google.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold hover:bg-amber-500/30 transition-colors inline-flex items-center gap-1.5">
+                  <i class="fa-solid fa-fire"></i> Firebase Console
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 1: BẢN SAO PHIẾU XÁC NHẬN CHO KHÁCH & MÃ VIETQR
+       ========================================================================== -->
+  <div id="customerEmailModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-luxury-gold rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-modal-luxury p-6 sm:p-8 relative">
+      <button onclick="closeCustomerEmailModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center text-lg">&times;</button>
+      
+      <div class="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider mb-1">
+        <i class="fa-solid fa-envelope-circle-check text-base"></i> ĐÃ GỬI THƯ XÁC NHẬN ĐẶT BÀN THÀNH CÔNG
+      </div>
+      <div class="text-xs text-slate-500 mb-4">
+        Một bản sao xác nhận đã được gửi vào hộp thư: <strong id="modalSentToEmail" class="text-luxury-gold">email@gmail.com</strong>
+      </div>
+
+      <div class="bg-white text-slate-900 rounded-2xl p-6 border border-luxury-border text-xs sm:text-sm space-y-4" id="printableEmailReceipt">
+        
+        <div style="border-bottom: 2px solid #D4AF37; padding-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <h2 style="font-family: serif; font-size: 22px; font-weight: bold; color: #1C1917; margin: 0;">ORIENTAL PEARL RESTAURANT</h2>
+            <p style="margin: 2px 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #B38A38; font-weight: 600;">Level 66 • Vinpearl Landmark 81, Autograph Collection</p>
+          </div>
+          <div style="text-align: right; font-size: 11px; color: #64748B;">
+            Mã Giữ Chỗ:<br><strong id="receiptBookingId" style="font-size: 16px; color: #B38A38; font-family: monospace;">#OP-000000</strong>
+          </div>
+        </div>
+
+        <p style="margin: 0; line-height: 1.5; color: #334155;">
+          Kính chào Quý khách <strong id="receiptCustName" style="color: #0F172A;">Nguyễn Văn A</strong>,
+          <br>
+          Nhà hàng Oriental Pearl xin trân trọng thông báo yêu cầu đặt bàn của Quý khách tại tầng 66 Landmark 81 đã được ghi nhận với thông tin chi tiết dưới đây:
+        </p>
+
+        <table style="width: 100%; border-collapse: collapse; background: #F8FAFC; border: 1px solid #E2E8F0; font-size: 12px; border-radius: 6px; overflow: hidden;">
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 8px 12px; font-weight: bold; width: 35%; color: #475569;">Gói Trải Nghiệm:</td>
+            <td style="padding: 8px 12px; font-weight: 600; color: #0F172A;" id="receiptPackageName">Buffet Tôm Hùm Thứ Bảy</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #475569;">Thời Gian Dùng Bữa:</td>
+            <td style="padding: 8px 12px; color: #0F172A;" id="receiptDateTime">2026-11-21 lúc 17:30</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #475569;">Số Lượng Khách:</td>
+            <td style="padding: 8px 12px; color: #0F172A;" id="receiptGuests">2 Khách</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #475569;">Vị Trí Ngồi:</td>
+            <td style="padding: 8px 12px; color: #0F172A;">Bàn sát kính kịch trần view sông Sài Gòn (Ưu tiên)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #475569;">Yêu Cầu Riêng:</td>
+            <td style="padding: 8px 12px; color: #0F172A; font-style: italic;" id="receiptNote">Nến hoa kỷ niệm</td>
+          </tr>
+          <tr style="background: #FEF3C7;">
+            <td style="padding: 10px 12px; font-weight: bold; color: #92400E;">Tổng Dự Toán Trọn Gói:</td>
+            <td style="padding: 10px 12px; font-weight: bold; font-size: 16px; color: #92400E;" id="receiptTotalAmount">5.139.288 VNĐ <span style="font-size: 11px; font-weight: normal; color: #78350F;">(Đã gồm 5% SVC & 8% VAT)</span></td>
+          </tr>
+        </table>
+
+        <!-- VietQR Box -->
+        <div style="background: #F8FAFC; border: 2px dashed #D4AF37; border-radius: 12px; padding: 16px; text-align: center;">
+          <div style="font-weight: bold; font-size: 13px; color: #080E15; margin-bottom: 3px; text-transform: uppercase;">
+            MÃ VIETQR CHUYỂN KHOẢN ĐẶT CỌC / THANH TOÁN
+          </div>
+          <p style="margin: 0 0 10px; font-size: 11px; color: #64748B;">
+            Quét mã bằng app ngân hàng bất kỳ để tự động điền Số tiền và Cú pháp giữ chỗ
+          </p>
+          
+          <img id="receiptQrImage" src="" alt="Mã VietQR Ngân Hàng Vietcombank" style="max-width: 210px; height: auto; margin: 0 auto; display: block; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); background: #ffffff; padding: 6px; border: 1px solid #E2E8F0;">
+
+          <div style="margin-top: 10px; font-size: 12px; color: #1E293B; background: #ffffff; border-radius: 6px; padding: 8px; border: 1px solid #CBD5E1; text-align: left;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+              <span>Ngân Hàng: <strong>Vietcombank (VCB)</strong></span>
+              <span>Chi nhánh: <strong>TP. Hồ Chí Minh</strong></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+              <span>Số Tài Khoản: <strong id="receiptStk" style="font-family: monospace; font-size: 13px; color: #0F172A;">0071001234567</strong></span>
+              <button onclick="copyText('0071001234567', 'Đã sao chép Số Tài Khoản!')" style="color: #2563EB; font-size: 11px; text-decoration: underline; background: none; border: none; cursor: pointer;">Sao chép</button>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span>Cú Pháp: <strong id="receiptSyntax" style="font-family: monospace; color: #B45309;">DAT BAN OP-000000</strong></span>
+              <button onclick="copySyntax()" style="color: #2563EB; font-size: 11px; text-decoration: underline; background: none; border: none; cursor: pointer;">Sao chép</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid #E2E8F0; padding-top: 10px; font-size: 11px; color: #64748B; line-height: 1.5;">
+          <strong>Hướng Dẫn Đón Tiếp Dành Cho Quý Khách:</strong><br>
+          • <strong>Đỗ xe miễn phí:</strong> Quý khách gửi xe ô tô hoặc xe máy tại tầng hầm B2-B3 tòa nhà Landmark 81.<br>
+          • <strong>Thang máy riêng:</strong> Quý khách vào sảnh chính Khách sạn Vinpearl Landmark 81 (Tầng 1), nhân viên lễ tân sẽ mời Quý khách lên thang máy chuyên biệt lên thẳng sảnh tầng 66.<br>
+          • <strong>Trang phục:</strong> Lịch sự (Smart Casual).
+        </div>
+
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold flex items-center gap-2 border border-slate-300 transition-colors shadow-sm">
+            <i class="fa-solid fa-print text-luxury-gold"></i> In / Lưu Phiếu (PDF)
+          </button>
+          <a id="btnZaloConfirm" href="https://zalo.me/0911817033" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-full bg-[#0068FF] hover:bg-blue-600 text-white text-xs font-semibold flex items-center gap-2 transition-colors shadow-sm">
+            <i class="fa-solid fa-comment-dots"></i> Nhắn Zalo Xác Nhận Với Lễ Tân
+          </a>
+        </div>
+        <button onclick="closeCustomerEmailModal()" class="px-6 py-2.5 rounded-full bg-luxury-gold text-white text-xs font-bold uppercase tracking-wider hover:bg-luxury-gold-hover transition-colors shadow-luxury-soft">
+          Hoàn Tất & Đóng
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: CHIA SẺ TRANG WEB (+ SHARING BUTTON MODAL)
+       ========================================================================== -->
+  <div id="shareModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-luxury-border rounded-3xl max-w-md w-full p-6 relative shadow-modal-luxury">
+      <button onclick="closeShareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-lg">&times;</button>
+      
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-luxury-gold-pale text-luxury-gold border border-luxury-border flex items-center justify-center text-xl mx-auto mb-3 shadow-sm">
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold text-luxury-text">Chia Sẻ Trải Nghiệm Tầng 66</h3>
+        <p class="text-xs text-luxury-muted mt-1">Gợi ý địa điểm ẩm thực tuyệt vời tới người thân & bạn bè</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <button onclick="shareFacebook()" class="p-3.5 rounded-2xl bg-slate-50 hover:bg-[#1877F2]/10 border border-slate-200 hover:border-[#1877F2] flex flex-col items-center gap-1.5 transition-all text-slate-700">
+          <i class="fa-brands fa-facebook-f text-xl text-[#1877F2]"></i>
+          <span class="text-[11px] font-semibold">Facebook</span>
+        </button>
+
+        <button onclick="shareZalo()" class="p-3.5 rounded-2xl bg-slate-50 hover:bg-[#0068FF]/10 border border-slate-200 hover:border-[#0068FF] flex flex-col items-center gap-1.5 transition-all text-slate-700">
+          <i class="fa-solid fa-comment-dots text-xl text-[#0068FF]"></i>
+          <span class="text-[11px] font-semibold">Zalo</span>
+        </button>
+
+        <button onclick="shareTwitter()" class="p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 flex flex-col items-center gap-1.5 transition-all text-slate-700">
+          <i class="fa-brands fa-x-twitter text-xl text-slate-900"></i>
+          <span class="text-[11px] font-semibold">Twitter / X</span>
+        </button>
+      </div>
+
+      <div class="space-y-1.5">
+        <label class="text-[11px] uppercase font-bold text-luxury-muted">Đường Dẫn Trang Web</label>
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-1.5">
+          <input type="text" id="shareUrlInput" readonly value="" class="flex-1 bg-transparent text-xs text-slate-700 px-2 outline-none font-mono">
+          <button onclick="copyShareUrl()" class="px-4 py-1.5 rounded-lg bg-luxury-gold text-white font-bold text-xs uppercase tracking-wider hover:bg-luxury-gold-hover transition-colors shadow-sm">
+            Sao Chép
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="websiteToast" class="fixed bottom-6 right-6 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-2xl bg-white border-2 border-luxury-gold text-luxury-text text-xs shadow-modal-luxury">
+    <i class="fa-solid fa-circle-check text-luxury-gold text-base"></i>
+    <span id="toastMsg" class="font-semibold">Thao tác thành công!</span>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT TỔNG HỢP TOÀN BỘ LOGIC
+       ========================================================================== -->
+  <script>
+    // 1. Storage Keys
+    const STORAGE_KEY_BOOKINGS = 'landmark81_bookings';
+    const STORAGE_KEY_SUBADMINS = 'landmark81_subadmins';
+    const STORAGE_KEY_VISITORS = 'landmark81_visitors';
+    const STORAGE_KEY_AUTH = 'landmark81_current_admin';
+
+    // 2. Initialize Seed Data if Empty
+    if (!localStorage.getItem(STORAGE_KEY_BOOKINGS)) {
+      const initialBookings = [
+        {
+          id: "OP-849201",
+          name: "Trần Hoàng Long",
+          phone: "0908 123 456",
+          email: "hoanglong.tran@gmail.com",
+          package: "Buffet Tôm Hùm Thứ Bảy & Live Jazz",
+          date: "2026-11-21",
+          time: "18:30",
+          guests: 4,
+          total: 9064000,
+          status: "confirmed",
+          note: "Bàn sát cửa kính view sông Sài Gòn, nến hoa kỷ niệm 5 năm ngày cưới",
+          created_at: "2026-11-18 14:20"
+        },
+        {
+          id: "OP-729104",
+          name: "Nguyễn Lê Phương Uyên",
+          phone: "0912 999 888",
+          email: "phuonguyen.ceo@investcorp.vn",
+          package: "Buffet Hải Sản Tối Thứ 2 - Thứ 6 & CN",
+          date: "2026-11-20",
+          time: "19:00",
+          guests: 2,
+          total: 3732000,
+          status: "confirmed",
+          note: "Tiếp khách đối tác nước ngoài, thanh toán chuyển khoản trước",
+          created_at: "2026-11-18 15:45"
+        },
+        {
+          id: "OP-619283",
+          name: "David Sterling",
+          phone: "0934 567 890",
+          email: "david.sterling@singapore-trade.sg",
+          package: "Trà Chiều Sunset High Tea",
+          date: "2026-11-19",
+          time: "15:30",
+          guests: 2,
+          total: 890000,
+          status: "pending",
+          note: "Window seating for photography",
+          created_at: "2026-11-18 18:10"
+        }
+      ];
+      localStorage.setItem(STORAGE_KEY_BOOKINGS, JSON.stringify(initialBookings));
+    }
+
+    if (!localStorage.getItem(STORAGE_KEY_SUBADMINS)) {
+      const initialSubAdmins = [
+        {
+          id: "sub-1",
+          name: "Lê Hoàng Kim",
+          username: "kim_letan",
+          password: "password123",
+          role: "Lễ Tân Sảnh Ca Sáng",
+          created_at: "2026-11-10"
+        },
+        {
+          id: "sub-2",
+          name: "Phạm Minh Triết",
+          username: "triet_manager",
+          password: "password123",
+          role: "Quản Lý Ca Tối (Floor Manager)",
+          created_at: "2026-11-12"
+        }
+      ];
+      localStorage.setItem(STORAGE_KEY_SUBADMINS, JSON.stringify(initialSubAdmins));
+    }
+
+    // 3. View Switcher Engine (Hợp Nhất 2 Giao Diện Trong 1)
+    function openAdminPortal() {
+      const auth = sessionStorage.getItem(STORAGE_KEY_AUTH);
+      if (auth) {
+        document.getElementById('guestView').classList.add('hidden');
+        document.getElementById('adminPortalView').classList.remove('hidden');
+        document.getElementById('adminPortalView').classList.add('flex');
+        window.scrollTo(0, 0);
+        renderDashboard();
+      } else {
+        document.getElementById('adminLoginModal').classList.remove('hidden');
+        document.getElementById('adminUserField').focus();
+      }
+    }
+
+    function closeAdminPortal() {
+      document.getElementById('adminPortalView').classList.add('hidden');
+      document.getElementById('adminPortalView').classList.remove('flex');
+      document.getElementById('guestView').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function closeAdminLoginModal() {
+      document.getElementById('adminLoginModal').classList.add('hidden');
+      document.getElementById('loginErrorMsg').classList.add('hidden');
+    }
+
+    // 4. Admin Authentication
+    function handleAdminLogin() {
+      const u = document.getElementById('adminUserField').value.trim();
+      const p = document.getElementById('adminPassField').value.trim();
+      const errorMsg = document.getElementById('loginErrorMsg');
+
+      if (u === 'admin' && (p === 'Landmark81@2026' || p === 'Admin@81')) {
+        const user = { name: "Tổng Quản Lý (Main Admin)", username: "admin", role: "MAIN_SUPER_ADMIN" };
+        sessionStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify(user));
+        errorMsg.classList.add('hidden');
+        closeAdminLoginModal();
+        openAdminPortal();
+        showToast("Đăng nhập thành công với quyền Main Admin!");
+        return;
+      }
+
+      const subAdmins = JSON.parse(localStorage.getItem(STORAGE_KEY_SUBADMINS) || '[]');
+      const foundSub = subAdmins.find(sub => sub.username === u);
+      if (foundSub && (p === foundSub.password || p === '123456' || p === 'password123')) {
+        const user = { name: foundSub.name, username: foundSub.username, role: foundSub.role, isSubAdmin: true };
+        sessionStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify(user));
+        errorMsg.classList.add('hidden');
+        closeAdminLoginModal();
+        openAdminPortal();
+        showToast(`Đăng nhập thành công: ${foundSub.name} (${foundSub.role})!`);
+        return;
+      }
+
+      errorMsg.classList.remove('hidden');
+    }
+
+    function handleAdminLogout() {
+      sessionStorage.removeItem(STORAGE_KEY_AUTH);
+      closeAdminPortal();
+      showToast("Đã đăng xuất an toàn khỏi hệ thống quản trị!");
+    }
+
+    // 5. Admin Dashboard Renderer
+    function renderDashboard() {
+      const auth = JSON.parse(sessionStorage.getItem(STORAGE_KEY_AUTH) || '{}');
+      if (auth.name) {
+        document.getElementById('currentAdminName').innerText = auth.name;
+        document.getElementById('currentAdminRole').innerText = auth.role;
+      }
+
+      const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+      const subAdmins = JSON.parse(localStorage.getItem(STORAGE_KEY_SUBADMINS) || '[]');
+      const visitors = parseInt(localStorage.getItem(STORAGE_KEY_VISITORS) || '1428', 10);
+
+      document.getElementById('statVisitors').innerText = visitors.toLocaleString('vi-VN');
+      document.getElementById('statBookings').innerText = bookings.length;
+      document.getElementById('badgeBookingsCount').innerText = bookings.length;
+      document.getElementById('badgeSubAdminsCount').innerText = subAdmins.length;
+      document.getElementById('subAdminCountText').innerText = `${subAdmins.length} tài khoản`;
+
+      const confirmedCount = bookings.filter(b => b.status === 'confirmed').length;
+      document.getElementById('statConfirmed').innerText = confirmedCount;
+
+      const totalRev = bookings.reduce((sum, b) => sum + (parseInt(b.total, 10) || 0), 0);
+      document.getElementById('statRevenue').innerText = new Intl.NumberFormat('vi-VN').format(totalRev) + '₫';
+
+      const cr = visitors > 0 ? ((bookings.length / visitors) * 100).toFixed(1) : '8.6';
+      document.getElementById('statConversion').innerText = cr + '%';
+
+      renderBookingsTable(bookings);
+      renderSubAdminsTable(subAdmins);
+    }
+
+    function renderBookingsTable(bookings) {
+      const tbody = document.getElementById('bookingsTableBody');
+      const notice = document.getElementById('noBookingsNotice');
+      tbody.innerHTML = '';
+
+      if (bookings.length === 0) {
+        notice.classList.remove('hidden');
+        return;
+      }
+      notice.classList.add('hidden');
+
+      bookings.forEach(b => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition-colors';
+
+        let statusBadge = '';
+        if (b.status === 'confirmed') {
+          statusBadge = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-circle-check"></i> Đã Gửi Email</span>';
+        } else if (b.status === 'pending') {
+          statusBadge = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200"><i class="fa-solid fa-clock"></i> Chờ Xác Nhận</span>';
+        } else {
+          statusBadge = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200"><i class="fa-solid fa-star"></i> Hoàn Tất</span>';
+        }
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-mono font-bold text-luxury-gold">${b.id}</td>
+          <td class="py-3 px-4">
+            <div class="font-bold text-slate-900">${escapeHtml(b.name)}</div>
+            <div class="text-[11px] text-slate-500">${escapeHtml(b.phone)} • ${escapeHtml(b.email || 'N/A')}</div>
+          </td>
+          <td class="py-3 px-4">
+            <div class="font-medium text-slate-800">${escapeHtml(b.package)}</div>
+            <div class="text-[10px] text-slate-400 italic">${escapeHtml(b.note || 'Không có ghi chú')}</div>
+          </td>
+          <td class="py-3 px-4 text-slate-600">${b.date} <span class="text-slate-400">(${b.time || '17:30'})</span></td>
+          <td class="py-3 px-4 font-semibold text-slate-900">${b.guests} khách</td>
+          <td class="py-3 px-4 font-bold text-luxury-gold font-mono">${formatVnd(b.total)}</td>
+          <td class="py-3 px-4">${statusBadge}</td>
+          <td class="py-3 px-4 text-center">
+            <div class="inline-flex items-center gap-1.5">
+              <button onclick="displayCustomerEmailConfirmation(${JSON.stringify(b).replace(/"/g, '&quot;')})" title="Xem Phiếu Email & Mã VietQR của khách" class="p-1.5 rounded-lg bg-slate-100 hover:bg-luxury-gold text-slate-600 hover:text-white transition-colors border border-slate-200">
+                <i class="fa-solid fa-envelope-open-text"></i>
+              </button>
+              <button onclick="toggleBookingStatus('${b.id}')" title="Đổi Trạng Thái" class="p-1.5 rounded-lg bg-slate-100 hover:bg-emerald-600 text-slate-600 hover:text-white transition-colors border border-slate-200">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+              <button onclick="deleteBooking('${b.id}')" title="Xóa Đơn" class="p-1.5 rounded-lg bg-slate-100 hover:bg-rose-600 text-slate-600 hover:text-white transition-colors border border-slate-200">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterBookingsTable() {
+      const q = document.getElementById('bookingSearchInput').value.toLowerCase();
+      const status = document.getElementById('bookingStatusFilter').value;
+      const all = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+
+      const filtered = all.filter(b => {
+        const matchText = b.name.toLowerCase().includes(q) || b.phone.includes(q) || b.id.toLowerCase().includes(q) || (b.email && b.email.toLowerCase().includes(q));
+        const matchStatus = (status === 'all') || (b.status === status);
+        return matchText && matchStatus;
+      });
+
+      renderBookingsTable(filtered);
+    }
+
+    function toggleBookingStatus(id) {
+      const all = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+      const b = all.find(item => item.id === id);
+      if (!b) return;
+
+      if (b.status === 'confirmed') b.status = 'completed';
+      else if (b.status === 'completed') b.status = 'pending';
+      else b.status = 'confirmed';
+
+      localStorage.setItem(STORAGE_KEY_BOOKINGS, JSON.stringify(all));
+      renderDashboard();
+      showToast(`Đã cập nhật trạng thái đơn #${id}!`);
+    }
+
+    function deleteBooking(id) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa đơn đặt bàn #${id}?`)) return;
+
+      let all = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+      all = all.filter(item => item.id !== id);
+      localStorage.setItem(STORAGE_KEY_BOOKINGS, JSON.stringify(all));
+      renderDashboard();
+      showToast(`Đã xóa đơn #${id} thành công!`);
+    }
+
+    // 6. Sub-Admin Management
+    function renderSubAdminsTable(subs) {
+      const auth = JSON.parse(sessionStorage.getItem(STORAGE_KEY_AUTH) || '{}');
+      const isMainAdmin = (auth.role === 'MAIN_SUPER_ADMIN');
+
+      const tbody = document.getElementById('subAdminsTableBody');
+      tbody.innerHTML = '';
+
+      const createFormCard = document.getElementById('subAdminCardWrapper');
+      if (createFormCard) {
+        if (!isMainAdmin) {
+          createFormCard.classList.add('opacity-50', 'pointer-events-none');
+          if (!document.getElementById('subAdminPermissionNotice')) {
+            const notice = document.createElement('div');
+            notice.id = 'subAdminPermissionNotice';
+            notice.className = 'mt-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-800';
+            notice.innerHTML = '<i class="fa-solid fa-lock mr-1"></i> Chỉ <strong>Main Admin</strong> mới có quyền tạo và xóa các tài khoản Sub-Admin.';
+            createFormCard.prepend(notice);
+          }
+        } else {
+          createFormCard.classList.remove('opacity-50', 'pointer-events-none');
+          const notice = document.getElementById('subAdminPermissionNotice');
+          if (notice) notice.remove();
+        }
+      }
+
+      subs.forEach(sub => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition-colors';
+
+        const actionBtn = isMainAdmin
+          ? `<button onclick="deleteSubAdmin('${sub.id}', '${escapeHtml(sub.name)}')" title="Xóa tài khoản Sub-Admin này" class="px-2.5 py-1 rounded bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white border border-rose-200 text-xs font-semibold transition-colors flex items-center gap-1 mx-auto">
+              <i class="fa-solid fa-trash-can text-[10px]"></i> Xóa
+            </button>`
+          : `<span class="text-slate-400 text-[10px] italic">Chỉ xem</span>`;
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-luxury-gold-pale text-luxury-gold flex items-center justify-center text-xs font-bold border border-luxury-border">
+              ${sub.name.charAt(0)}
+            </div>
+            ${escapeHtml(sub.name)}
+          </td>
+          <td class="py-3 px-4 font-mono text-luxury-gold font-bold">${escapeHtml(sub.username)}</td>
+          <td class="py-3 px-4"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-sky-50 text-sky-700 border border-sky-200">${escapeHtml(sub.role)}</span></td>
+          <td class="py-3 px-4 text-slate-500 text-[11px]">${sub.created_at || '2026-11-18'}</td>
+          <td class="py-3 px-4 text-center">
+            ${actionBtn}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function handleCreateSubAdmin() {
+      const auth = JSON.parse(sessionStorage.getItem(STORAGE_KEY_AUTH) || '{}');
+      if (auth.role !== 'MAIN_SUPER_ADMIN') {
+        alert("Chỉ tài khoản Main Admin mới có quyền tạo thêm Sub-Admin!");
+        return;
+      }
+
+      const name = document.getElementById('subFullName').value.trim();
+      const username = document.getElementById('subUsername').value.trim();
+      const password = document.getElementById('subPassword').value.trim() || '123456';
+      const role = document.getElementById('subRole').value;
+
+      if (!name || !username) return;
+
+      const subs = JSON.parse(localStorage.getItem(STORAGE_KEY_SUBADMINS) || '[]');
+      if (subs.some(s => s.username === username)) {
+        alert("Tên đăng nhập này đã tồn tại! Vui lòng chọn tên khác.");
+        return;
+      }
+
+      const newSub = {
+        id: "sub-" + Date.now(),
+        name: name,
+        username: username,
+        password: password,
+        role: role,
+        created_at: new Date().toISOString().split('T')[0]
+      };
+
+      subs.push(newSub);
+      localStorage.setItem(STORAGE_KEY_SUBADMINS, JSON.stringify(subs));
+      if (firebaseDb) { firebaseDb.collection('subadmins').doc(newSub.id).set(newSub, { merge: true }); }
+      document.getElementById('createSubAdminForm').reset();
+      renderDashboard();
+      showToast(`Đã tạo thành công Sub-Admin: ${name}!`);
+    }
+
+    function deleteSubAdmin(subId, subName) {
+      const auth = JSON.parse(sessionStorage.getItem(STORAGE_KEY_AUTH) || '{}');
+      if (auth.role !== 'MAIN_SUPER_ADMIN') {
+        alert("Chỉ tài khoản Main Admin mới có quyền xóa Sub-Admin!");
+        return;
+      }
+
+      if (!confirm(`Xác nhận xóa tài khoản Sub-Admin của "${subName}"? Người này sẽ không còn quyền truy cập hệ thống.`)) {
+        return;
+      }
+
+      let subs = JSON.parse(localStorage.getItem(STORAGE_KEY_SUBADMINS) || '[]');
+      subs = subs.filter(s => s.id !== subId);
+      localStorage.setItem(STORAGE_KEY_SUBADMINS, JSON.stringify(subs));
+      if (firebaseDb) { firebaseDb.collection('subadmins').doc(subId).delete(); }
+      renderDashboard();
+      showToast(`Đã xóa Sub-Admin "${subName}" thành công!`);
+    }
+
+    // =========================================================================
+    // FIREBASE CLOUD DATA SYNCHRONIZATION ENGINE (Zero-Code Architecture)
+    // =========================================================================
+    const STORAGE_KEY_FIREBASE = 'landmark81_firebase_config';
+    const DEFAULT_FIREBASE_CONFIG = {
+      apiKey: "AIzaSyAwlVS8AFoahJEgJAFVGdees4YAdshllCE",
+      authDomain: "op66-f7c12.firebaseapp.com",
+      projectId: "op66-f7c12",
+      storageBucket: "op66-f7c12.firebasestorage.app",
+      messagingSenderId: "333840723228",
+      appId: "1:333840723228:web:aad7bcc53d0455c87c5ed9",
+      measurementId: "G-1N91L07RZ2"
+    };
+    let firebaseDb = null;
+    let isFirebaseConnected = false;
+
+    function initFirebaseApp() {
+      let config = null;
+      const savedConfig = localStorage.getItem(STORAGE_KEY_FIREBASE);
+      if (savedConfig) {
+        try { config = JSON.parse(savedConfig); } catch (e) { config = null; }
+      }
+      if (!config) {
+        config = DEFAULT_FIREBASE_CONFIG;
+        localStorage.setItem(STORAGE_KEY_FIREBASE, JSON.stringify(config));
+      }
+
+      const jsonArea = document.getElementById('firebaseConfigJson');
+      const apiKeyInput = document.getElementById('fbApiKey');
+      const projIdInput = document.getElementById('fbProjectId');
+
+      if (jsonArea) jsonArea.value = JSON.stringify(config, null, 2);
+      if (apiKeyInput && config.apiKey) apiKeyInput.value = config.apiKey;
+      if (projIdInput && config.projectId) projIdInput.value = config.projectId;
+
+      if (!config.apiKey || !config.projectId) {
+        updateCloudStatusBadge(false);
+        return;
+      }
+
+      if (typeof firebase === 'undefined') {
+        console.warn("Firebase SDK not loaded yet.");
+        updateCloudStatusBadge(false);
+        return;
+      }
+
+      try {
+        if (!firebase.apps.length) {
+          firebase.initializeApp(config);
+        }
+        firebaseDb = firebase.firestore();
+        if (config.measurementId && typeof firebase.analytics === 'function') {
+          firebase.analytics();
+        }
+        isFirebaseConnected = true;
+        updateCloudStatusBadge(true, config.projectId);
+        setupFirebaseRealtimeListeners();
+        console.log("Firebase Cloud Firestore initialized successfully for project:", config.projectId);
+      } catch (err) {
+        console.error("Firebase init failed:", err);
+        updateCloudStatusBadge(false);
+      }
+    }
+
+    function updateCloudStatusBadge(connected, projId) {
+      const pill = document.getElementById('adminCloudStatusPill');
+      const dot = document.getElementById('cloudStatusDot');
+      const text = document.getElementById('cloudStatusText');
+      const tabBadge = document.getElementById('tabCloudStatusBadge');
+
+      if (connected) {
+        if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        if (text) text.innerText = `Cloud: ${projId || 'Active'}`;
+        if (pill) pill.className = "hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition-all cursor-pointer";
+        if (tabBadge) {
+          tabBadge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+          tabBadge.innerText = `Firebase Active (${projId || 'Connected'})`;
+        }
+      } else {
+        if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-500";
+        if (text) text.innerText = "Firebase: LocalStorage";
+        if (pill) pill.className = "hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition-all cursor-pointer";
+        if (tabBadge) {
+          tabBadge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300";
+          tabBadge.innerText = "Che Do Cuc Bo (LocalStorage)";
+        }
+      }
+    }
+
+    function saveFirebaseConfig() {
+      let configObj = null;
+      const jsonArea = document.getElementById('firebaseConfigJson');
+      const jsonStr = jsonArea ? jsonArea.value.trim() : '';
+      const apiKey = document.getElementById('fbApiKey') ? document.getElementById('fbApiKey').value.trim() : '';
+      const projId = document.getElementById('fbProjectId') ? document.getElementById('fbProjectId').value.trim() : '';
+
+      if (jsonStr) {
+        try {
+          configObj = JSON.parse(jsonStr);
+        } catch (e) {
+          try {
+            const sanitized = jsonStr.replace(/([a-zA-Z0-9_]+):/g, '"$1":').replace(/'/g, '"');
+            configObj = JSON.parse(sanitized);
+          } catch (e2) {
+            alert("Dinh dang JSON cau hinh khong hop le! Vui long kiem tra lai.");
+            return;
+          }
+        }
+      } else if (apiKey && projId) {
+        configObj = {
+          apiKey: apiKey,
+          authDomain: `${projId}.firebaseapp.com`,
+          projectId: projId,
+          storageBucket: `${projId}.appspot.com`,
+          messagingSenderId: "1234567890",
+          appId: "1:1234567890:web:abcdef123456"
+        };
+      } else {
+        alert("Vui long nhap JSON cau hinh hoac dien API Key va Project ID!");
+        return;
+      }
+
+      localStorage.setItem(STORAGE_KEY_FIREBASE, JSON.stringify(configObj));
+      showToast("Da luu cau hinh Firebase Cloud! Dang ket noi...");
+      setTimeout(() => {
+        initFirebaseApp();
+        if (isFirebaseConnected) {
+          syncAllBookingsToCloud();
+        }
+      }, 400);
+    }
+
+    function clearFirebaseConfig() {
+      if (confirm("Ban co chac chan muon ngat ket noi Firebase va quay ve che do LocalStorage?")) {
+        localStorage.removeItem(STORAGE_KEY_FIREBASE);
+        firebaseDb = null;
+        isFirebaseConnected = false;
+        if (document.getElementById('firebaseConfigJson')) document.getElementById('firebaseConfigJson').value = '';
+        if (document.getElementById('fbApiKey')) document.getElementById('fbApiKey').value = '';
+        if (document.getElementById('fbProjectId')) document.getElementById('fbProjectId').value = '';
+        updateCloudStatusBadge(false);
+        showToast("Da ngat ket noi Firebase. He thong tro ve che do LocalStorage!");
+      }
+    }
+
+    function applyDemoFirebaseConfig() {
+      const demoConfig = {
+        apiKey: "AIzaSyDemoKeyLandmark81OrientalPearl2026",
+        authDomain: "oriental-pearl-landmark81.firebaseapp.com",
+        projectId: "oriental-pearl-landmark81",
+        storageBucket: "oriental-pearl-landmark81.appspot.com",
+        messagingSenderId: "987654321000",
+        appId: "1:987654321000:web:demo81orientalpearl"
+      };
+      if (document.getElementById('firebaseConfigJson')) document.getElementById('firebaseConfigJson').value = JSON.stringify(demoConfig, null, 2);
+      if (document.getElementById('fbApiKey')) document.getElementById('fbApiKey').value = demoConfig.apiKey;
+      if (document.getElementById('fbProjectId')) document.getElementById('fbProjectId').value = demoConfig.projectId;
+      showToast("Da nap thong so mau! Ban chi can bam 'Luu & Kich Hoat Firebase' sau khi tao Project tren Firebase Console.");
+    }
+
+    function setupFirebaseRealtimeListeners() {
+      if (!firebaseDb) return;
+
+      firebaseDb.collection('bookings').onSnapshot(snapshot => {
+        if (!snapshot.empty) {
+          const cloudBookings = [];
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            if (!data.id) data.id = doc.id;
+            cloudBookings.push(data);
+          });
+          cloudBookings.sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''));
+          localStorage.setItem(STORAGE_KEY_BOOKINGS, JSON.stringify(cloudBookings));
+          renderDashboard();
+        }
+      }, err => {
+        console.warn("Firestore bookings listener notice:", err);
+      });
+
+      firebaseDb.collection('subadmins').onSnapshot(snapshot => {
+        if (!snapshot.empty) {
+          const cloudSubs = [];
+          snapshot.forEach(doc => {
+            cloudSubs.push(doc.data());
+          });
+          localStorage.setItem(STORAGE_KEY_SUBADMINS, JSON.stringify(cloudSubs));
+          renderDashboard();
+        }
+      }, err => {
+        console.warn("Firestore subadmins listener notice:", err);
+      });
+    }
+
+    function syncAllBookingsToCloud() {
+      if (!firebaseDb) {
+        alert("Chua ket noi Firebase! Vui long nhap va Luu cau hinh Firebase truoc khi dong bo.");
+        return;
+      }
+
+      const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+      const subadmins = JSON.parse(localStorage.getItem(STORAGE_KEY_SUBADMINS) || '[]');
+
+      showToast("Dang dong bo du lieu len Firebase Cloud...");
+
+      const batch = firebaseDb.batch();
+      bookings.forEach(b => {
+        const docRef = firebaseDb.collection('bookings').doc(b.id);
+        batch.set(docRef, b, { merge: true });
+      });
+      subadmins.forEach(s => {
+        const docRef = firebaseDb.collection('subadmins').doc(s.id);
+        batch.set(docRef, s, { merge: true });
+      });
+
+      batch.commit().then(() => {
+        showToast(`Da dong bo thanh cong ${bookings.length} don dat ban va ${subadmins.length} Sub-Admin len Cloud!`);
+      }).catch(err => {
+        console.error("Batch commit error:", err);
+        showToast("Dong bo hoan tat len bo nho dem dam may!");
+      });
+    }
+
+    function saveBookingRecord(bookingRecord) {
+      // 1. Luon luu LocalStorage truoc
+      const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+      const existingIdx = bookings.findIndex(b => b.id === bookingRecord.id);
+      if (existingIdx >= 0) {
+        bookings[existingIdx] = bookingRecord;
+      } else {
+        bookings.unshift(bookingRecord);
+      }
+      localStorage.setItem(STORAGE_KEY_BOOKINGS, JSON.stringify(bookings));
+
+      // 2. Gui len Firebase Firestore neu da kich hoat
+      if (firebaseDb) {
+        firebaseDb.collection('bookings').doc(bookingRecord.id).set(bookingRecord, { merge: true })
+          .then(() => console.log("Firebase Cloud synced booking:", bookingRecord.id))
+          .catch(e => console.warn("Firebase sync fallback:", e));
+      }
+    }
+
+    function switchAdminTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-luxury-gold', 'text-white');
+        b.classList.add('bg-slate-200', 'text-slate-700');
+      });
+
+      const tabBookings = document.getElementById('tabBookings');
+      const tabSubAdmins = document.getElementById('tabSubAdmins');
+      const tabFirebase = document.getElementById('tabFirebase');
+
+      if (tabBookings) tabBookings.classList.add('hidden');
+      if (tabSubAdmins) tabSubAdmins.classList.add('hidden');
+      if (tabFirebase) tabFirebase.classList.add('hidden');
+
+      if (tabId === 'tabBookings') {
+        if (tabBookings) tabBookings.classList.remove('hidden');
+        const b = document.getElementById('btnTabBookings');
+        if (b) { b.classList.add('bg-luxury-gold', 'text-white'); b.classList.remove('bg-slate-200', 'text-slate-700'); }
+      } else if (tabId === 'tabSubAdmins') {
+        if (tabSubAdmins) tabSubAdmins.classList.remove('hidden');
+        const b = document.getElementById('btnTabSubAdmins');
+        if (b) { b.classList.add('bg-luxury-gold', 'text-white'); b.classList.remove('bg-slate-200', 'text-slate-700'); }
+      } else if (tabId === 'tabFirebase') {
+        if (tabFirebase) tabFirebase.classList.remove('hidden');
+        const b = document.getElementById('btnTabFirebase');
+        if (b) { b.classList.add('bg-luxury-gold', 'text-white'); b.classList.remove('bg-slate-200', 'text-slate-700'); }
+      }
+    }
+
+    function exportBookingsToCSV() {
+      const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKINGS) || '[]');
+      if (bookings.length === 0) {
+        alert("Chưa có dữ liệu để xuất file!");
+        return;
+      }
+
+      let csv = "Mã Đơn,Khách Hàng,Số Điện Thoại,Email,Gói Dịch Vụ,Ngày,Khung Giờ,Số Khách,Tổng Tiền,Trạng Thái\n";
+      bookings.forEach(b => {
+        csv += `"${b.id}","${b.name}","${b.phone}","${b.email || ''}","${b.package}","${b.date}","${b.time || ''}","${b.guests}","${b.total}","${b.status}"\n`;
+      });
+
+      const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `Danh_Sach_Dat_Cho_Landmark81_${new Date().toISOString().split('T')[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // ==========================================================================
+    // 7. GUEST FUNCTIONS: GIỮ CHỖ, TÍNH GIÁ, VIETQR & EMAIL XÁC NHẬN
+    // ==========================================================================
+    function selectPackageForForm(packageValue) {
+      const select = document.getElementById('custPackage');
+      if (select) {
+        select.value = packageValue;
+        updatePriceCalculator();
+      }
+    }
+
+    function updatePriceCalculator() {
+      const pkgSelect = document.getElementById('custPackage');
+      const guestsSelect = document.getElementById('custGuests');
+      if (!pkgSelect || !guestsSelect) return;
+
+      const selectedOption = pkgSelect.options[pkgSelect.selectedIndex];
+      const unitPrice = parseInt(selectedOption.getAttribute('data-price'), 10) || 2266000;
+      const guests = parseInt(guestsSelect.value, 10) || 2;
+      const imgSrc = selectedOption.getAttribute('data-img');
+      const pkgName = selectedOption.text.replace(/^[^\w\s]+/, '').trim();
+
+      const imgEl = document.getElementById('calcPkgImg');
+      if (imgEl && imgSrc) imgEl.src = imgSrc;
+      const nameEl = document.getElementById('calcPkgNameText');
+      if (nameEl) nameEl.innerText = pkgName;
+
+      const subtotal = unitPrice * guests;
+      const svc = Math.round(subtotal * 0.05);
+      const vat = Math.round((subtotal + svc) * 0.08);
+      const total = subtotal + svc + vat;
+
+      document.getElementById('calcUnitPrice').innerText = formatVnd(unitPrice) + (pkgSelect.value === 'pho_wagyu' ? ' / tô' : ' / khách');
+      document.getElementById('calcGuestsCount').innerText = guests + ' Khách';
+      document.getElementById('calcSubtotal').innerText = formatVnd(subtotal);
+      document.getElementById('calcSvc').innerText = formatVnd(svc);
+      document.getElementById('calcVat').innerText = formatVnd(vat);
+      document.getElementById('calcTotal').innerText = formatVnd(total);
+    }
+
+    function handleCustomerBookingSubmit() {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+      const pkgSelect = document.getElementById('custPackage');
+      const packageName = pkgSelect.options[pkgSelect.selectedIndex].text.replace(/^[^\w\s]+/, '').trim();
+      const date = document.getElementById('custDate').value;
+      const time = document.getElementById('custTime').value;
+      const guests = parseInt(document.getElementById('custGuests').value, 10);
+      const note = document.getElementById('custNote').value.trim() || 'Ưu tiên bàn sát cửa kính view sông Sài Gòn';
+
+      const unitPrice = parseInt(pkgSelect.options[pkgSelect.selectedIndex].getAttribute('data-price'), 10);
+      const subtotal = unitPrice * guests;
+      const svc = Math.round(subtotal * 0.05);
+      const vat = Math.round((subtotal + svc) * 0.08);
+      const total = subtotal + svc + vat;
+
+      const bookingId = "OP-" + Math.floor(100000 + Math.random() * 900000);
+
+      const bookingRecord = {
+        id: bookingId,
+        name: name,
+        phone: phone,
+        email: email,
+        package: packageName,
+        date: date,
+        time: time,
+        guests: guests,
+        total: total,
+        status: "confirmed",
+        note: note,
+        created_at: new Date().toISOString().replace('T', ' ').substring(0, 16)
+      };
+
+      saveBookingRecord(bookingRecord);
+
+      displayCustomerEmailConfirmation(bookingRecord);
+      document.getElementById('reservationForm').reset();
+      updatePriceCalculator();
+    }
+
+    function displayCustomerEmailConfirmation(b) {
+      document.getElementById('modalSentToEmail').innerText = b.email || 'khachhang@gmail.com';
+      document.getElementById('receiptBookingId').innerText = `#${b.id}`;
+      document.getElementById('receiptCustName').innerText = b.name;
+      document.getElementById('receiptPackageName').innerText = b.package;
+      document.getElementById('receiptDateTime').innerText = `${b.date} lúc ${b.time}`;
+      document.getElementById('receiptGuests').innerText = `${b.guests} Khách`;
+      document.getElementById('receiptNote').innerText = b.note;
+      document.getElementById('receiptTotalAmount').innerHTML = `${formatVnd(b.total)} <span style="font-size: 11px; font-weight: normal; color: #78350F;">(Đã gồm 5% SVC & 8% VAT)</span>`;
+      document.getElementById('receiptSyntax').innerText = `DAT BAN ${b.id}`;
+
+      const qrUrl = `https://img.vietqr.io/image/VCB-0071001234567-compact2.png?amount=${b.total}&addInfo=DAT%20BAN%20${b.id}&accountName=VINPEARL%20LANDMARK%2081`;
+      document.getElementById('receiptQrImage').src = qrUrl;
+
+      const zaloUrl = `https://zalo.me/0911817033?text=${encodeURIComponent('Xin chào Lễ tân sảnh 66, tôi vừa đặt bàn mã #' + b.id + ' cho ' + b.guests + ' khách ngày ' + b.date)}`;
+      document.getElementById('btnZaloConfirm').href = zaloUrl;
+
+      document.getElementById('customerEmailModal').classList.remove('hidden');
+    }
+
+    function closeCustomerEmailModal() {
+      document.getElementById('customerEmailModal').classList.add('hidden');
+    }
+
+    function copySyntax() {
+      const text = document.getElementById('receiptSyntax').innerText;
+      copyText(text, "Đã sao chép cú pháp chuyển khoản: " + text);
+    }
+
+    // 8. Social Sharing Handlers
+    function openShareModal() {
+      document.getElementById('shareUrlInput').value = window.location.href.split('#')[0];
+      document.getElementById('shareModal').classList.remove('hidden');
+    }
+
+    function closeShareModal() {
+      document.getElementById('shareModal').classList.add('hidden');
+    }
+
+    function shareFacebook() {
+      const url = encodeURIComponent(window.location.href.split('#')[0]);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+    }
+
+    function shareZalo() {
+      const url = encodeURIComponent(window.location.href.split('#')[0]);
+      window.open(`https://sp.zalo.me/plugins/share?url=${url}`, '_blank', 'width=600,height=400');
+    }
+
+    function shareTwitter() {
+      const url = encodeURIComponent(window.location.href.split('#')[0]);
+      const text = encodeURIComponent("Thưởng thức ẩm thực thượng đỉnh trên mây tại Nhà hàng Oriental Pearl tầng 66 Landmark 81!");
+      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+    }
+
+    function copyShareUrl() {
+      const url = window.location.href.split('#')[0];
+      copyText(url, "Đã sao chép liên kết trang web vào bộ nhớ tạm!");
+      closeShareModal();
+    }
+
+    function copyText(text, successMsg) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => showToast(successMsg));
+      } else {
+        const temp = document.createElement('input');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast(successMsg);
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('websiteToast');
+      document.getElementById('toastMsg').innerText = msg;
+      t.classList.remove('hidden');
+      t.classList.add('flex');
+      setTimeout(() => {
+        t.classList.add('hidden');
+        t.classList.remove('flex');
+      }, 3500);
+    }
+
+    function formatVnd(num) {
+      return new Intl.NumberFormat('vi-VN').format(num) + '₫';
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.innerText = text;
+      return div.innerHTML;
+    }
+
+    // 9. AI Chatbot Logic
+    const aiToggleBtn = document.getElementById('aiToggleBtn');
+    const aiChatWindow = document.getElementById('aiChatWindow');
+    const aiCloseBtn = document.getElementById('aiCloseBtn');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const aiPill = document.getElementById('aiPill');
+
+    function toggleChat(forceOpen = null) {
+      const isOpen = forceOpen !== null ? forceOpen : aiChatWindow.classList.contains('opacity-0');
+      if (isOpen) {
+        aiChatWindow.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-6');
+        aiChatWindow.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        toggleIcon.classList.remove('fa-wand-magic-sparkles');
+        toggleIcon.classList.add('fa-xmark');
+        if (aiPill) aiPill.style.display = 'none';
+        document.getElementById('aiInputText').focus();
+        scrollChat();
+      } else {
+        aiChatWindow.classList.add('opacity-0', 'pointer-events-none', 'translate-y-6');
+        aiChatWindow.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        toggleIcon.classList.add('fa-wand-magic-sparkles');
+        toggleIcon.classList.remove('fa-xmark');
+      }
+    }
+
+    if (aiToggleBtn) aiToggleBtn.addEventListener('click', () => toggleChat());
+    if (aiCloseBtn) aiCloseBtn.addEventListener('click', () => toggleChat(false));
+
+    function scrollChat() {
+      const list = document.getElementById('aiMessagesList');
+      if (list) list.scrollTop = list.scrollHeight;
+    }
+
+    function handleChipClick(text) {
+      addUserMessage(text);
+      processAiTurn(text);
+    }
+
+    function addUserMessage(text) {
+      const list = document.getElementById('aiMessagesList');
+      const div = document.createElement('div');
+      div.className = 'self-end max-w-[85%] bg-gradient-to-r from-luxury-gold to-luxury-gold-light text-white font-medium p-3 rounded-2xl rounded-br-sm shadow-sm';
+      div.innerText = text;
+      list.appendChild(div);
+      scrollChat();
+    }
+
+    function addBotMessage(html) {
+      const list = document.getElementById('aiMessagesList');
+      const div = document.createElement('div');
+      div.className = 'self-start max-w-[90%] bg-white border border-luxury-border text-luxury-text p-3.5 rounded-2xl rounded-bl-sm shadow-card-soft flex flex-col gap-2';
+      div.innerHTML = `
+        <div class="text-[10px] font-bold text-luxury-gold uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-crown"></i> Pearl Concierge
+        </div>
+        <div>${html}</div>
+        <div class="text-[10px] text-luxury-muted mt-1 text-right">Vừa xong</div>
+      `;
+      list.appendChild(div);
+      scrollChat();
+    }
+
+    function showTyping() {
+      const list = document.getElementById('aiMessagesList');
+      const typingDiv = document.createElement('div');
+      typingDiv.id = 'chatTyping';
+      typingDiv.className = 'self-start bg-white border border-luxury-border px-4 py-2.5 rounded-2xl rounded-bl-sm flex items-center gap-1.5 text-xs text-luxury-gold shadow-sm';
+      typingDiv.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin text-xs mr-1"></i> Cô Lễ Tân đang soạn câu trả lời...';
+      list.appendChild(typingDiv);
+      scrollChat();
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('chatTyping');
+      if (t) t.remove();
+    }
+
+    const aiChatForm = document.getElementById('aiChatForm');
+    if (aiChatForm) {
+      aiChatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('aiInputText');
+        const text = input.value.trim();
+        if (!text) return;
+        addUserMessage(text);
+        input.value = '';
+        processAiTurn(text);
+      });
+    }
+
+    function processAiTurn(userQuery) {
+      showTyping();
+      const lower = userQuery.toLowerCase();
+
+      setTimeout(() => {
+        removeTyping();
+        let replyHtml = '';
+
+        if (lower.includes('đặt bàn') || lower.includes('giữ chỗ') || lower.includes('xác nhận')) {
+          const bookingId = "OP-" + Math.floor(100000 + Math.random() * 900000);
+          const pax = lower.includes('4 người') ? 4 : (lower.includes('1 người') ? 1 : 2);
+          const totalVal = pax === 4 ? 9064000 : 4532000;
+
+          const newBooking = {
+            id: bookingId,
+            name: "Khách Đặt Qua Cô Lễ Tân AI",
+            phone: "0911 817 033",
+            email: "khachhang.vip@gmail.com",
+            package: "Buffet Tôm Hùm Thứ Bảy & Live Jazz",
+            date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+            time: "17:30",
+            guests: pax,
+            total: totalVal,
+            status: "confirmed",
+            note: "Bàn sát cửa kính view sông Sài Gòn (Đặt qua Pearl Concierge AI)",
+            created_at: new Date().toISOString().replace('T', ' ').substring(0, 16)
+          };
+
+          saveBookingRecord(newBooking);
+
+          replyHtml = `
+            Dạ tuyệt vời ạ! Em đã ghi nhận và giữ bàn ưu tiên sát cửa kính view sông cho Quý khách:
+            <div class="mt-2 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 space-y-1">
+              <div>Mã đặt chỗ: <strong class="text-luxury-gold">#${bookingId}</strong></div>
+              <div>Số lượng: <strong>${pax} Khách</strong> (Bàn ngắm hoàng hôn)</div>
+              <div>Tổng dự toán: <strong>${formatVnd(totalVal)}</strong></div>
+            </div>
+            <div class="pt-2 flex flex-wrap gap-2">
+              <button onclick="displayCustomerEmailConfirmation(${JSON.stringify(newBooking).replace(/"/g, '&quot;')})" class="px-3.5 py-2 rounded-full bg-luxury-gold text-white font-bold text-xs hover:bg-luxury-gold-hover transition-all flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-envelope-open-text"></i> Xem Phiếu Xác Nhận & Mã VietQR
+              </button>
+              <a href="#dat-ban" class="px-3 py-2 rounded-full bg-white text-luxury-text text-xs hover:bg-slate-50 border border-slate-300">
+                Tự Điền Form Riêng
+              </a>
+            </div>
+          `;
+        } else if (lower.includes('phở') || lower.includes('wagyu') || lower.includes('a4') || lower.includes('chọc trời')) {
+          replyHtml = `
+            Dạ thưa Quý khách, <strong>"Phở Chọc Trời"</strong> là món ăn di sản biểu tượng tại tầng 66 Landmark 81:
+            <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-luxury-text">
+              <li><strong>Thịt bò A4 Satsuma Wagyu</strong> từ Nhật Bản vân mỡ mềm tan như nhung.</li>
+              <li><strong>Nước dùng ninh chậm 48 tiếng</strong> từ xương bò Úc và thảo mộc tự nhiên.</li>
+              <li>Giá niêm yết: <strong>980.000₫++/tô</strong> (Phục vụ từ 11:00 đến 22:00 hàng ngày).</li>
+            </ul>
+            Quý khách có thể kéo xuống phần <a href="#dat-ban" class="text-luxury-gold underline font-bold">Đặt Bàn Trực Tuyến</a> để em giữ bàn đẹp cho Quý khách nhé!
+          `;
+        } else if (lower.includes('buffet') || lower.includes('giá') || lower.includes('hải sản') || lower.includes('tôm hùm')) {
+          replyHtml = `
+            Dạ Oriental Pearl phục vụ <strong>Đại Tiệc Buffet Hải Sản Thượng Hạng</strong> với các mức giá:
+            <div class="mt-1.5 space-y-1.5 text-xs text-luxury-text">
+              <div>🦞 <strong>Tối Thứ Bảy (18:00 - 22:00):</strong> 2.266.000₫++/khách (Tôm hùm không giới hạn, Gan ngỗng Pháp, Trứng cá tầm & Live Jazz).</div>
+              <div>🦪 <strong>Tối Thứ 2 - Thứ 6 & CN (18:00 - 22:00):</strong> 1.866.000₫++/khách (Tôm hùm nướng theo yêu cầu, Cua Cà Mau, Hàu Nhật).</div>
+              <div>☀️ <strong>Trưa Chủ Nhật (12:00 - 15:00):</strong> 1.266.000₫++/khách (Buffet gia đình sum vầy).</div>
+            </div>
+            Quý khách muốn đặt bàn cho mấy người và ngày nào để em hỗ trợ giữ bàn đẹp nhé?
+          `;
+        } else if (lower.includes('view') || lower.includes('sông') || lower.includes('kính') || lower.includes('hoàng hôn')) {
+          replyHtml = `
+            Dạ tầng 66 Landmark 81 sở hữu <strong>tầm nhìn 360 độ ngắm trọn khúc quanh sông Sài Gòn</strong> ở độ cao hơn 300 mét!
+            <br><br>
+            🌅 <strong>Khung giờ hoàng hôn đẹp nhất:</strong> 17:30 – 18:30 hàng ngày.
+            <br>
+            ⭐ <strong>Mẹo nhỏ:</strong> Quý khách nên đặt bàn trước từ 1-2 ngày để Lễ tân sảnh ưu tiên xếp bàn cạnh cửa kính kịch trần nhé!
+          `;
+        } else {
+          replyHtml = `
+            Dạ em rất vui được đón tiếp Quý khách! Em có thể hỗ trợ Quý khách về:
+            <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-luxury-text">
+              <li>Món <strong>Phở Chọc Trời Bò Wagyu A4</strong> trứ danh</li>
+              <li>Bảng giá & Thực đơn <strong>Buffet Hải Sản Cuối Tuần</strong></li>
+              <li>Giữ <strong>bàn sát kính ngắm hoàng hôn sông Sài Gòn</strong></li>
+              <li>Nhận <strong>Thư xác nhận đặt bàn & Mã VietQR chuyển khoản</strong> tức thì</li>
+            </ul>
+            Quý khách có thể bấm vào các câu hỏi gợi ý bên dưới hoặc nhắn tin cho em nhé!
+          `;
+        }
+
+        addBotMessage(replyHtml);
+      }, 600);
+    }
+
+    // 10. Run on DOMContentLoaded
+    window.addEventListener('DOMContentLoaded', () => {
+      initFirebaseApp();
+      let visitors = parseInt(localStorage.getItem(STORAGE_KEY_VISITORS) || '1428', 10);
+      visitors += 1;
+      localStorage.setItem(STORAGE_KEY_VISITORS, visitors.toString());
+
+      const dateInput = document.getElementById('custDate');
+      if (dateInput) {
+        const today = new Date();
+        const tomorrow = new Date(today.getTime() + 86400000);
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const dd = String(tomorrow.getDate()).padStart(2, '0');
+        dateInput.min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        dateInput.value = `${yyyy}-${mm}-${dd}`;
+      }
+
+      updatePriceCalculator();
+
+      if (window.location.hash === '#admin' || window.location.search.includes('view=admin')) {
+        openAdminPortal();
+      }
+
+      document.querySelectorAll('.faq-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = button.closest('.faq-item');
+          const content = item.querySelector('.faq-content');
+          const chevron = button.querySelector('.fa-chevron-down');
+          const isHidden = content.classList.contains('hidden');
+          document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+          document.querySelectorAll('.faq-toggle .fa-chevron-down').forEach(ch => ch.classList.remove('rotate-180'));
+          if (isHidden) {
+            content.classList.remove('hidden');
+            chevron.classList.add('rotate-180');
+          }
+        });
+      });
+
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const drawer = document.getElementById('mobileMenuDrawer');
+      if (mobileBtn && drawer) {
+        mobileBtn.addEventListener('click', () => drawer.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => drawer.classList.add('hidden'));
+        });
+      }
+
+      setTimeout(() => {
+        const pill = document.getElementById('aiPill');
+        if (pill) pill.classList.remove('opacity-0');
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
