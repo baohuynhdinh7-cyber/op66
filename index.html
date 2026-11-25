@@ -1014,7 +1014,22 @@
         </button>
       </div>
 
-      <div id="aiMessagesList" class="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs sm:text-sm bg-luxury-bg">
+      <!-- Tab Chuyen Doi: Dify AI 5 Sao vs Dat Ban Nhanh -->
+      <div class="flex items-center border-b border-luxury-border bg-white text-[11px] font-bold">
+        <button type="button" onclick="switchChatMode('dify')" id="tabBtnDify" class="flex-1 py-2 text-center text-luxury-gold border-b-2 border-luxury-gold bg-luxury-gold-pale/50 flex items-center justify-center gap-1.5 transition-all">
+          <i class="fa-solid fa-sparkles text-luxury-gold"></i> Dify AI Concierge (T?ng 66)
+        </button>
+        <button type="button" onclick="switchChatMode('quick')" id="tabBtnQuick" class="flex-1 py-2 text-center text-luxury-muted hover:text-luxury-text flex items-center justify-center gap-1.5 transition-all">
+          <i class="fa-solid fa-bolt"></i> D?t Bn Nhanh
+        </button>
+      </div>
+
+      <!-- Khung Dify AI Iframe Container -->
+      <div id="difyChatContainer" class="flex-1 w-full h-full bg-white relative">
+        <iframe src="https://udify.app/chatbot/rDGR8WqUBWdt1oFX" style="width: 100%; height: 100%; min-height: 440px; border: none;" frameborder="0" allow="microphone;clipboard-write"></iframe>
+      </div>
+
+<div id="aiMessagesList" class="hidden flex-1 p-4 overflow-y-auto space-y-3.5 text-xs sm:text-sm bg-luxury-bg">
         <div class="bg-white border border-luxury-border text-luxury-text p-3.5 rounded-2xl rounded-bl-sm shadow-card-soft">
           <div class="text-[10px] font-bold text-luxury-gold uppercase tracking-wider mb-1 flex items-center gap-1.5">
             <i class="fa-solid fa-crown"></i> Pearl Concierge
@@ -1041,7 +1056,7 @@
         </div>
       </div>
 
-      <div class="p-3 bg-white border-t border-luxury-border">
+      <div class="hidden p-3 bg-white border-t border-luxury-border" id="aiChatFormContainer">
         <form id="aiChatForm" class="flex items-center gap-2">
           <input type="text" id="aiInputText" placeholder="Hỏi về món ăn, giá buffet, đặt bàn..." autocomplete="off" class="flex-1 bg-luxury-bg border border-luxury-border focus:border-luxury-gold text-luxury-text text-xs sm:text-sm px-3.5 py-2.5 rounded-xl outline-none transition-all">
           <button type="submit" class="w-10 h-10 rounded-xl bg-luxury-gold text-white flex items-center justify-center font-bold hover:bg-luxury-gold-hover transition-colors shadow-sm" aria-label="Gửi">
@@ -2490,6 +2505,36 @@
     const toggleIcon = document.getElementById('toggleIcon');
     const aiPill = document.getElementById('aiPill');
 
+        function switchChatMode(mode) {
+      const difyBox = document.getElementById('difyChatContainer');
+      const msgBox = document.getElementById('aiMessagesList');
+      const formBox = document.getElementById('aiChatFormContainer');
+      const tabDify = document.getElementById('tabBtnDify');
+      const tabQuick = document.getElementById('tabBtnQuick');
+
+      if (mode === 'dify') {
+        if (difyBox) difyBox.classList.remove('hidden');
+        if (msgBox) msgBox.classList.add('hidden');
+        if (formBox) formBox.classList.add('hidden');
+        if (tabDify) {
+          tabDify.className = "flex-1 py-2 text-center text-luxury-gold border-b-2 border-luxury-gold bg-luxury-gold-pale/50 flex items-center justify-center gap-1.5 transition-all";
+        }
+        if (tabQuick) {
+          tabQuick.className = "flex-1 py-2 text-center text-luxury-muted hover:text-luxury-text flex items-center justify-center gap-1.5 transition-all";
+        }
+      } else {
+        if (difyBox) difyBox.classList.add('hidden');
+        if (msgBox) msgBox.classList.remove('hidden');
+        if (formBox) formBox.classList.remove('hidden');
+        if (tabDify) {
+          tabDify.className = "flex-1 py-2 text-center text-luxury-muted hover:text-luxury-text flex items-center justify-center gap-1.5 transition-all";
+        }
+        if (tabQuick) {
+          tabQuick.className = "flex-1 py-2 text-center text-luxury-gold border-b-2 border-luxury-gold bg-luxury-gold-pale/50 flex items-center justify-center gap-1.5 transition-all";
+        }
+      }
+    }
+
     function toggleChat(forceOpen = null) {
       const isOpen = forceOpen !== null ? forceOpen : aiChatWindow.classList.contains('opacity-0');
       if (isOpen) {
@@ -2718,5 +2763,17 @@
       }, 2000);
     });
   </script>
+  <!-- Dify.ai Official AI Chatbot Widget (Token: rDGR8WqUBWdt1oFX) -->
+  <script>
+    window.difyChatbotConfig = {
+      token: 'rDGR8WqUBWdt1oFX'
+    };
+  </script>
+  <script
+    src="https://udify.app/embed.min.js"
+    id="rDGR8WqUBWdt1oFX"
+    defer>
+  </script>
+
 </body>
 </html>
